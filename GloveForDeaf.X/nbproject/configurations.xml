@@ -9,6 +9,8 @@
       <itemPath>INTERRUPT.h</itemPath>
       <itemPath>ADC.h</itemPath>
       <itemPath>TIMER.h</itemPath>
+      <itemPath>eeprom.h</itemPath>
+      <itemPath>TWI.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -28,8 +30,13 @@
       <itemPath>INTERRUPT.c</itemPath>
       <itemPath>ADC.c</itemPath>
       <itemPath>TIMER.c</itemPath>
+      <itemPath>eeprom.c</itemPath>
+      <itemPath>TWI.c</itemPath>
     </logicalFolder>
   </logicalFolder>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="default" type="2">
@@ -40,7 +47,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>noID</platformTool>
         <languageToolchain>XC8</languageToolchain>
-        <languageToolchainVersion>2.50</languageToolchainVersion>
+        <languageToolchainVersion>2.32</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>

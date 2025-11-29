@@ -41,64 +41,37 @@
  * 12) MCAL libs are named UPPER_CASE conventionally, while HAL libs are named lower_case conventionally
  */
 #define F_CPU 16000000UL
-#undef __OPTIMIZE__ //SUPERRRRRRRRRRRRRRRRRR IMPORTANTTTTTTTTTTTTTTT!!!!!
+//#undef __OPTIMIZE__ //SUPERRRRRRRRRRRRRRRRRR IMPORTANTTTTTTTTTTTTTTT!!!!!
 #include <stdlib.h>
+#include <stdio.h>
+#include <util/delay.h>
 
 #include "TIMER.h"
 #include "ADC.h"
 #include "lcd1602.h"
-#include "keypad_3x3.h"
+#include "eeprom.h"
+#include "DIO.h"
 
-#define SERVO_MIN_OCR 5
-#define SERVO_MAX_OCR 35
+#define LCD_D0 A0
+#define LCD_D1 A1
+#define LCD_D2 A2
+#define LCD_D3 A3
+#define LCD_D4 A4
+#define LCD_D5 A5
+#define LCD_D6 A6
+#define LCD_D7 A7
+#define LCD_RS B1
+#define LCD_E B0
 
-volatile uint8_t val = SERVO_MIN_OCR;
-
-//void change_duty_cycle()
-//{
-//    val = (ADC_READ()*(SERVO_MAX_OCR-SERVO_MIN_OCR)/1023)+SERVO_MIN_OCR;
-//    TIMER0_SET_OCR (val);
-//}
-
-int main()
-{
-    // configuring pwm mode on TIMER0 with PB3
-    TIMER0_MODE (TIMER_FPWM);
-    TIMER0_OC_PIN (OC0_MODE_PWM_NORMAL);
+lcd1602_t LCD_1;
+int main(){
+    LCD1602_INIT(&LCD_1,LCD_D7,LCD_D6,LCD_D5,LCD_D4,LCD_D3,LCD_D2,LCD_D1,LCD_D0,LCD_RS,LCD_E,TRUE,TRUE,FALSE);
+    EEPROM_Init();
+    EEPROM_WriteByte(0x00,'A');
+    uint8_t byte = EEPROM_ReadByte(0x00);
     
-//    // configuring ADC0
-//    ADC_INIT (VREF_AVCC,ADC0,change_duty_cycle,ADC_PS_MIN,FALSE);
-    
-    // configuring keypad
-    keypad_3x3_t KEY_1;
-    KEYPAD_3X3_INIT (&KEY_1,D2,D3,D7,A1,A2,A3,FALSE);
-    
-    // configuring LCD
-    lcd1602_t LCD_1;
-    LCD1602_INIT (&LCD_1,A7,A6,A5,A4,B1,B2,FALSE,FALSE,FALSE);
-    
-    // starting timer
-    sei();
-    TIMER0_CLK (TIMER0_PS_1024);
-    TIMER0_SET_OCR(val);
-    
-    _delay_ms(50);
-    while(1)
-    {
-        int temp = KEYPAD_3X3_READ(&KEY_1);
-        _delay_ms(100);
-        if(temp == 6 && val < SERVO_MAX_OCR)
-            val++;
-        if (temp ==4 && val > SERVO_MIN_OCR)
-            val--;
-        TIMER0_SET_OCR (val);
-        LCD1602_CMD (&LCD_1,CMD_CLEAR_DISPLAY_RETURN_HOME);
-        LCD1602_STR (&LCD_1,"ANGLE: ");
-        LCD1602_INT (&LCD_1,(val-SERVO_MIN_OCR)*180/(SERVO_MAX_OCR-SERVO_MIN_OCR));
-//        LCD1602_INT (&LCD_1,KEYPAD_3X3_READ(&KEY_1));
-//        ADC_MANUAL_SAMPLE ();
-        _delay_ms (15);
-    }
+    _delay_ms (10);
+    LCD1602_CHAR(&LCD_1,byte);
     
     return EXIT_SUCCESS;
 }

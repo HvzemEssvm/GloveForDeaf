@@ -11,7 +11,7 @@
 #include "DIO.h"
 #include <util/delay.h>
 
-#define __4BIT_MODE__ 
+//#define __4BIT_MODE__ 
 
 #define RS_CMD LOW
 #define RS_DATA HIGH
