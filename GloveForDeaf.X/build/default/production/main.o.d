@@ -19,7 +19,8 @@ build/default/production/main.o.d build/default/production/main.o: main.c \
  c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\fuse.h \
  c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\lock.h DIO.h \
  c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\io.h ADC.h \
- lcd1602.h eeprom.h TWI.h
+ lcd1602.h eeprom.h TWI.h \
+ c:\program\ files\microchip\xc8\v2.32\avr\avr\include\string.h
 
 c:\program\ files\microchip\xc8\v2.32\avr\avr\include\stdlib.h:
 
@@ -72,3 +73,5 @@ lcd1602.h:
 eeprom.h:
 
 TWI.h:
+
+c:\program\ files\microchip\xc8\v2.32\avr\avr\include\string.h:
