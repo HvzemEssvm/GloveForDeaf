@@ -2,6 +2,22 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/Education/AMIT%20Embedded%20Diploma/GloveForDeaf/GloveForDeaf.X/ADC.h</file>
+            <file>file:/D:/Education/AMIT%20Embedded%20Diploma/GloveForDeaf/GloveForDeaf.X/flex.c</file>
+            <file>file:/D:/Education/AMIT%20Embedded%20Diploma/GloveForDeaf/GloveForDeaf.X/DIO.h</file>
+            <file>file:/D:/Education/AMIT%20Embedded%20Diploma/GloveForDeaf/GloveForDeaf.X/buzzer.h</file>
+            <file>file:/D:/Education/AMIT%20Embedded%20Diploma/GloveForDeaf/GloveForDeaf.X/DIO.c</file>
+            <file>file:/D:/Education/AMIT%20Embedded%20Diploma/GloveForDeaf/GloveForDeaf.X/lcd1602.h</file>
+            <file>file:/D:/Education/AMIT%20Embedded%20Diploma/GloveForDeaf/GloveForDeaf.X/glove.h</file>
+            <file>file:/D:/Education/AMIT%20Embedded%20Diploma/GloveForDeaf/GloveForDeaf.X/buzzer.c</file>
+            <file>file:/D:/Education/AMIT%20Embedded%20Diploma/GloveForDeaf/GloveForDeaf.X/main.c</file>
+            <file>file:/D:/Education/AMIT%20Embedded%20Diploma/GloveForDeaf/GloveForDeaf.X/INTERRUPT.c</file>
+            <file>file:/D:/Education/AMIT%20Embedded%20Diploma/GloveForDeaf/GloveForDeaf.X/ADC.c</file>
+            <file>file:/D:/Education/AMIT%20Embedded%20Diploma/GloveForDeaf/GloveForDeaf.X/lcd1602.c</file>
+            <file>file:/D:/Education/AMIT%20Embedded%20Diploma/GloveForDeaf/GloveForDeaf.X/test.c</file>
+            <file>file:/D:/Education/AMIT%20Embedded%20Diploma/GloveForDeaf/GloveForDeaf.X/glove.c</file>
+            <file>file:/D:/Education/AMIT%20Embedded%20Diploma/GloveForDeaf/GloveForDeaf.X/flex.h</file>
+        </group>
     </open-files>
 </project-private>

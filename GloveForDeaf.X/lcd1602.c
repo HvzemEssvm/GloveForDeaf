@@ -158,6 +158,13 @@ void LCD1602_INT(const lcd1602_t* LCD, int32_t val)
     LCD1602_STR (LCD,temp);
 }
 
+void LCD1602_FLOAT(const lcd1602_t* LCD, float val)
+{
+    char temp[12];
+    sprintf(temp,"%.2f",val);
+    LCD1602_STR (LCD,temp);
+}
+
 void LCD1602_CLEAR_CHAR_LTR(const lcd1602_t* LCD)
 {
     LCD1602_CMD (LCD,CMD_SHIFT_CURSOR_LEFT);

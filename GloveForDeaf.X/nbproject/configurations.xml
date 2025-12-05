@@ -9,6 +9,9 @@
       <itemPath>INTERRUPT.h</itemPath>
       <itemPath>ADC.h</itemPath>
       <itemPath>TIMER.h</itemPath>
+      <itemPath>buzzer.h</itemPath>
+      <itemPath>flex.h</itemPath>
+      <itemPath>glove.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -28,6 +31,10 @@
       <itemPath>INTERRUPT.c</itemPath>
       <itemPath>ADC.c</itemPath>
       <itemPath>TIMER.c</itemPath>
+      <itemPath>test.c</itemPath>
+      <itemPath>buzzer.c</itemPath>
+      <itemPath>flex.c</itemPath>
+      <itemPath>glove.c</itemPath>
     </logicalFolder>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>

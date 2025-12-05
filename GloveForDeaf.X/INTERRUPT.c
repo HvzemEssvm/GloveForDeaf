@@ -1,8 +1,8 @@
 #include "INTERRUPT.h"
 
-volatile void (*INT0_callback)() = NULL;
-volatile void (*INT1_callback)() = NULL;
-volatile void (*INT2_callback)() = NULL;
+void (*INT0_callback)() = NULL;
+void (*INT1_callback)() = NULL;
+void (*INT2_callback)() = NULL;
 
 ISR(INT0_vect)
 {

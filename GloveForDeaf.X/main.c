@@ -43,16 +43,8 @@
 #define F_CPU 16000000UL
 #undef __OPTIMIZE__ //SUPERRRRRRRRRRRRRRRRRR IMPORTANTTTTTTTTTTTTTTT!!!!!
 #include <stdlib.h>
-
-#include "TIMER.h"
 #include "ADC.h"
 #include "lcd1602.h"
-#include "keypad_3x3.h"
-
-#define SERVO_MIN_OCR 5
-#define SERVO_MAX_OCR 35
-
-volatile uint8_t val = SERVO_MIN_OCR;
 
 //void change_duty_cycle()
 //{
@@ -60,45 +52,9 @@ volatile uint8_t val = SERVO_MIN_OCR;
 //    TIMER0_SET_OCR (val);
 //}
 
-int main()
-{
-    // configuring pwm mode on TIMER0 with PB3
-    TIMER0_MODE (TIMER_FPWM);
-    TIMER0_OC_PIN (OC0_MODE_PWM_NORMAL);
-    
-//    // configuring ADC0
-//    ADC_INIT (VREF_AVCC,ADC0,change_duty_cycle,ADC_PS_MIN,FALSE);
-    
-    // configuring keypad
-    keypad_3x3_t KEY_1;
-    KEYPAD_3X3_INIT (&KEY_1,D2,D3,D7,A1,A2,A3,FALSE);
-    
-    // configuring LCD
-    lcd1602_t LCD_1;
-    LCD1602_INIT (&LCD_1,A7,A6,A5,A4,B1,B2,FALSE,FALSE,FALSE);
-    
-    // starting timer
-    sei();
-    TIMER0_CLK (TIMER0_PS_1024);
-    TIMER0_SET_OCR(val);
-    
-    _delay_ms(50);
-    while(1)
-    {
-        int temp = KEYPAD_3X3_READ(&KEY_1);
-        _delay_ms(100);
-        if(temp == 6 && val < SERVO_MAX_OCR)
-            val++;
-        if (temp ==4 && val > SERVO_MIN_OCR)
-            val--;
-        TIMER0_SET_OCR (val);
-        LCD1602_CMD (&LCD_1,CMD_CLEAR_DISPLAY_RETURN_HOME);
-        LCD1602_STR (&LCD_1,"ANGLE: ");
-        LCD1602_INT (&LCD_1,(val-SERVO_MIN_OCR)*180/(SERVO_MAX_OCR-SERVO_MIN_OCR));
-//        LCD1602_INT (&LCD_1,KEYPAD_3X3_READ(&KEY_1));
-//        ADC_MANUAL_SAMPLE ();
-        _delay_ms (15);
-    }
-    
-    return EXIT_SUCCESS;
-}
+//int main()
+//{
+//    
+//    
+//    return EXIT_SUCCESS;
+//}

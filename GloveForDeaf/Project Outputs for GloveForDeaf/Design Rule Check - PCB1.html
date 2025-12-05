@@ -1,0 +1,610 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD25\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">11/29/2025</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">4:39:26 AM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:00</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc" class="file"><acronym title="C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc">C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">90</td></tr>
+</table>
+</td>
+</table><a name="IDD4JNVWJZHXDGC4IHYETLQYSXXG4O5EJ4KBK51EGHRXJ1XFVIIWDF"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID52ZWY42EIW23C4W5SRRBHPIEBEZBSYTKXEES4YGYYWUGJCPBHZOK">Clearance Constraint (Gap=1mm) (All),(All)</a></td>
+<td class="column2">14</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDOHD21VFCVFACIHLWYNGTYBKOUBUGZ2GXTFUEECN1YYJXKY5Y5VPM">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDXLPXYURNKRDMPE5AOSQYR5AL3OWCLR4Y3WBPEEJCOPPBAR4DZNNH">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDWALOCQNWTYH0FIRIYXXUNUHD0PCDCLBQ1CMRAWHHOGEEYUMKZOZL">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDD21GP11APNVMH23KXR4YRTQTFKTX32YWZZQ4GPE2HNVJ1XSWSUIF">Width Constraint (Min=0.9mm) (Max=1mm) (Preferred=1mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDVRJ1ZBVRJWX4OHKOY51O0JI03KAJUEX2EKFTJSBGVN1LTEL0YQYB">Routing Topology Rule(Topology=Shortest) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID4WNWJRC4W4PFKZ4H1QB0YL4KCLYK5JT4H34CP0DT5AR1L0EAZVPH">Power Plane Connect Rule(Direct Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDWREJHMWNY1QNE4TU53LZHMD5KFSLPTRB2RUY0BQ4I5ADNHK2CWJ">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDNRT1P3E0GUMIT2DETICKOCACI31TCEVORID0LHBVEIDXJEI3S3M">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDYPDYLZBAAZH1LD5GJZ0VWLQ4LGVBTOHMRHR2CHL1XMS5IQ45EZE">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDGTOKTQAZNSWBL32OIFIDBRRHYMX5QRRXFCXIWRNIWS5ALHYPOBBG">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</a></td>
+<td class="column2">17</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDZPPQ1JGCEBLHKXMJOUJ0AUP3KHCPLUQ4SSP240OW2VSPCS5OA1MG">Silk to Silk (Clearance=0.254mm) (All),(All)</a></td>
+<td class="column2">59</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDHYBKWAFK2IKFKB3DTFROO1XPVB3HLFSZGAXSZAG3AUOLXFDZARPJ">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDHHVTS31IS3DPMM5ZKIQEWWWISNZLI4E0JCA01UB3NMBL52LLB11K">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">90</td>
+</tr>
+</table><br><a name="ID52ZWY42EIW23C4W5SRRBHPIEBEZBSYTKXEES4YGYYWUGJCPBHZOK"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Clearance Constraint (Gap=1mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4397.923mil|Location2.X=4438.543mil|Location1.Y=3197.912mil|Location2.Y=3239.907mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4397.923mil|Location2.X=4438.543mil|Location1.Y=3197.912mil|Location2.Y=3239.907mil|Absolute=True">Clearance Constraint: (0.942mm &lt; 1mm) Between Pad C4-2(113.294mm,81.778mm) on Multi-Layer And Track (111.252mm,79.177mm)(111.252mm,83.199mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4419.69mil|Location2.X=4460.31mil|Location1.Y=3293.315mil|Location2.Y=3335.31mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4419.69mil|Location2.X=4460.31mil|Location1.Y=3293.315mil|Location2.Y=3335.31mil|Absolute=True">Clearance Constraint: (0.89mm &lt; 1mm) Between Pad P1-1(111.506mm,84.201mm) on Multi-Layer And Pad P1-2(114.046mm,84.201mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4319.69mil|Location2.X=4360.31mil|Location1.Y=3293.315mil|Location2.Y=3335.31mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4319.69mil|Location2.X=4360.31mil|Location1.Y=3293.315mil|Location2.Y=3335.31mil|Absolute=True">Clearance Constraint: (0.89mm &lt; 1mm) Between Pad P1-1(111.506mm,84.201mm) on Multi-Layer And Pad P2-5(108.966mm,84.201mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4519.69mil|Location2.X=4560.31mil|Location1.Y=3293.315mil|Location2.Y=3335.31mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4519.69mil|Location2.X=4560.31mil|Location1.Y=3293.315mil|Location2.Y=3335.31mil|Absolute=True">Clearance Constraint: (0.89mm &lt; 1mm) Between Pad P1-2(114.046mm,84.201mm) on Multi-Layer And Pad P1-3(116.586mm,84.201mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4619.69mil|Location2.X=4660.31mil|Location1.Y=3293.315mil|Location2.Y=3335.31mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4619.69mil|Location2.X=4660.31mil|Location1.Y=3293.315mil|Location2.Y=3335.31mil|Absolute=True">Clearance Constraint: (0.89mm &lt; 1mm) Between Pad P1-3(116.586mm,84.201mm) on Multi-Layer And Pad P1-4(119.126mm,84.201mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4719.69mil|Location2.X=4760.31mil|Location1.Y=3293.315mil|Location2.Y=3335.31mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4719.69mil|Location2.X=4760.31mil|Location1.Y=3293.315mil|Location2.Y=3335.31mil|Absolute=True">Clearance Constraint: (0.89mm &lt; 1mm) Between Pad P1-4(119.126mm,84.201mm) on Multi-Layer And Pad P1-5(121.666mm,84.201mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3919.69mil|Location2.X=3960.31mil|Location1.Y=3293.315mil|Location2.Y=3335.31mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3919.69mil|Location2.X=3960.31mil|Location1.Y=3293.315mil|Location2.Y=3335.31mil|Absolute=True">Clearance Constraint: (0.89mm &lt; 1mm) Between Pad P2-1(98.806mm,84.201mm) on Multi-Layer And Pad P2-2(101.346mm,84.201mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4019.69mil|Location2.X=4060.31mil|Location1.Y=3293.315mil|Location2.Y=3335.31mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4019.69mil|Location2.X=4060.31mil|Location1.Y=3293.315mil|Location2.Y=3335.31mil|Absolute=True">Clearance Constraint: (0.89mm &lt; 1mm) Between Pad P2-2(101.346mm,84.201mm) on Multi-Layer And Pad P2-3(103.886mm,84.201mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4119.69mil|Location2.X=4160.31mil|Location1.Y=3293.315mil|Location2.Y=3335.31mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4119.69mil|Location2.X=4160.31mil|Location1.Y=3293.315mil|Location2.Y=3335.31mil|Absolute=True">Clearance Constraint: (0.89mm &lt; 1mm) Between Pad P2-3(103.886mm,84.201mm) on Multi-Layer And Pad P2-4(106.426mm,84.201mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4219.69mil|Location2.X=4260.31mil|Location1.Y=3293.315mil|Location2.Y=3335.31mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4219.69mil|Location2.X=4260.31mil|Location1.Y=3293.315mil|Location2.Y=3335.31mil|Absolute=True">Clearance Constraint: (0.89mm &lt; 1mm) Between Pad P2-4(106.426mm,84.201mm) on Multi-Layer And Pad P2-5(108.966mm,84.201mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4294.238mil|Location2.X=4334.858mil|Location1.Y=2737.976mil|Location2.Y=2778.596mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4294.238mil|Location2.X=4334.858mil|Location1.Y=2737.976mil|Location2.Y=2778.596mil|Absolute=True">Clearance Constraint: (0.841mm &lt; 1mm) Between Pad R1-1(110.562mm,69.088mm) on Multi-Layer And Track (108.18mm,69.953mm)(110.039mm,71.812mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4211.245mil|Location2.X=4251.865mil|Location1.Y=2761.245mil|Location2.Y=2801.865mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4211.245mil|Location2.X=4251.865mil|Location1.Y=2761.245mil|Location2.Y=2801.865mil|Absolute=True">Clearance Constraint: (0.976mm &lt; 1mm) Between Track (105.41mm,69.977mm)(107.539mm,72.106mm) on Bottom Layer And Track (108.18mm,69.263mm)(108.18mm,69.953mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4241.027mil|Location2.X=4281.647mil|Location1.Y=2791.027mil|Location2.Y=2831.647mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4241.027mil|Location2.X=4281.647mil|Location1.Y=2791.027mil|Location2.Y=2831.647mil|Absolute=True">Clearance Constraint: (0.976mm &lt; 1mm) Between Track (105.41mm,69.977mm)(107.539mm,72.106mm) on Bottom Layer And Track (108.18mm,69.953mm)(110.039mm,71.812mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4241.027mil|Location2.X=4281.647mil|Location1.Y=2791.027mil|Location2.Y=2831.647mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4241.027mil|Location2.X=4281.647mil|Location1.Y=2791.027mil|Location2.Y=2831.647mil|Absolute=True">Clearance Constraint: (0.976mm &lt; 1mm) Between Track (107.539mm,72.106mm)(107.539mm,72.948mm) on Bottom Layer And Track (108.18mm,69.953mm)(110.039mm,71.812mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDGTOKTQAZNSWBL32OIFIDBRRHYMX5QRRXFCXIWRNIWS5ALHYPOBBG"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4323.18mil|Location2.X=4330.846mil|Location1.Y=3310.558mil|Location2.Y=3318.225mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4323.18mil|Location2.X=4330.846mil|Location1.Y=3310.558mil|Location2.Y=3318.225mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Arc (110.026mm,84.221mm) on Top Overlay And Pad P2-5(108.966mm,84.201mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3851.809mil|Location2.X=3859.476mil|Location1.Y=2998.275mil|Location2.Y=3005.941mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3851.809mil|Location2.X=3859.476mil|Location1.Y=2998.275mil|Location2.Y=3005.941mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad C1-1(98.425mm,76.287mm) on Multi-Layer And Text "100nF" (98.933mm,71.755mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3847.545mil|Location2.X=3855.211mil|Location1.Y=2983.678mil|Location2.Y=2991.345mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3847.545mil|Location2.X=3855.211mil|Location1.Y=2983.678mil|Location2.Y=2991.345mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad C1-1(98.425mm,76.287mm) on Multi-Layer And Text "AMIT      &lt;Glove For Deaf&gt;" (98.044mm,62.738mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3891.167mil|Location2.X=3898.833mil|Location1.Y=2821.167mil|Location2.Y=2828.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3891.167mil|Location2.X=3898.833mil|Location1.Y=2821.167mil|Location2.Y=2828.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad C1-2(98.425mm,71.287mm) on Multi-Layer And Text "100nF" (98.933mm,71.755mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3856.167mil|Location2.X=3863.833mil|Location1.Y=2784.492mil|Location2.Y=2792.159mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3856.167mil|Location2.X=3863.833mil|Location1.Y=2784.492mil|Location2.Y=2792.159mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad C1-2(98.425mm,71.287mm) on Multi-Layer And Text "AMIT      &lt;Glove For Deaf&gt;" (98.044mm,62.738mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4786.462mil|Location2.X=4794.128mil|Location1.Y=3115.674mil|Location2.Y=3123.34mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4786.462mil|Location2.X=4794.128mil|Location1.Y=3115.674mil|Location2.Y=3123.34mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad C2-1(121.656mm,78.369mm) on Multi-Layer And Text "100nF" (118.215mm,81.28mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4650.309mil|Location2.X=4657.975mil|Location1.Y=3196.167mil|Location2.Y=3203.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4650.309mil|Location2.X=4657.975mil|Location1.Y=3196.167mil|Location2.Y=3203.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad C2-2(118.12mm,81.905mm) on Multi-Layer And Text "100nF" (118.215mm,81.28mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4046.864mil|Location2.X=4054.531mil|Location1.Y=3110.271mil|Location2.Y=3117.938mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4046.864mil|Location2.X=4054.531mil|Location1.Y=3110.271mil|Location2.Y=3117.938mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad C3-1(102.87mm,78.232mm) on Multi-Layer And Text "100nF" (99.419mm,81.153mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3910.309mil|Location2.X=3917.976mil|Location1.Y=3191.167mil|Location2.Y=3198.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3910.309mil|Location2.X=3917.976mil|Location1.Y=3191.167mil|Location2.Y=3198.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad C3-2(99.334mm,81.768mm) on Multi-Layer And Text "100nF" (99.419mm,81.153mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4596.462mil|Location2.X=4604.128mil|Location1.Y=3110.674mil|Location2.Y=3118.34mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4596.462mil|Location2.X=4604.128mil|Location1.Y=3110.674mil|Location2.Y=3118.34mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad C4-1(116.83mm,78.242mm) on Multi-Layer And Text "100nF" (113.389mm,81.153mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4460.309mil|Location2.X=4467.975mil|Location1.Y=3191.167mil|Location2.Y=3198.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4460.309mil|Location2.X=4467.975mil|Location1.Y=3191.167mil|Location2.Y=3198.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad C4-2(113.294mm,81.778mm) on Multi-Layer And Text "100nF" (113.389mm,81.153mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4416.462mil|Location2.X=4424.128mil|Location1.Y=3110.674mil|Location2.Y=3118.34mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4416.462mil|Location2.X=4424.128mil|Location1.Y=3110.674mil|Location2.Y=3118.34mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad C5-1(112.258mm,78.242mm) on Multi-Layer And Text "100nF" (108.817mm,81.153mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4280.309mil|Location2.X=4287.975mil|Location1.Y=3191.167mil|Location2.Y=3198.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4280.309mil|Location2.X=4287.975mil|Location1.Y=3191.167mil|Location2.Y=3198.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad C5-2(108.722mm,81.778mm) on Multi-Layer And Text "100nF" (108.817mm,81.153mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4236.462mil|Location2.X=4244.128mil|Location1.Y=3110.674mil|Location2.Y=3118.34mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4236.462mil|Location2.X=4244.128mil|Location1.Y=3110.674mil|Location2.Y=3118.34mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad C6-1(107.686mm,78.242mm) on Multi-Layer And Text "100nF" (104.245mm,81.153mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4100.309mil|Location2.X=4107.975mil|Location1.Y=3191.167mil|Location2.Y=3198.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4100.309mil|Location2.X=4107.975mil|Location1.Y=3191.167mil|Location2.Y=3198.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad C6-2(104.15mm,81.778mm) on Multi-Layer And Text "100nF" (104.245mm,81.153mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3853.682mil|Location2.X=3861.348mil|Location1.Y=3320.346mil|Location2.Y=3328.013mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3853.682mil|Location2.X=3861.348mil|Location1.Y=3320.346mil|Location2.Y=3328.013mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad P2-1(98.806mm,84.201mm) on Multi-Layer And Text "AMIT      &lt;Glove For Deaf&gt;" (98.044mm,62.738mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4730.661mil|Location2.X=4741.911mil|Location1.Y=2714.375mil|Location2.Y=2725.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4730.661mil|Location2.X=4741.911mil|Location1.Y=2714.375mil|Location2.Y=2725.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.129mm &lt; 0.254mm) Between Pad R1-2(119.562mm,69.088mm) on Multi-Layer And Track (120.466mm,67.208mm)(120.466mm,73.508mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.129mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDZPPQ1JGCEBLHKXMJOUJ0AUP3KHCPLUQ4SSP240OW2VSPCS5OA1MG"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3832.82mil|Location2.X=3840.487mil|Location1.Y=3311.954mil|Location2.Y=3319.621mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3832.82mil|Location2.X=3840.487mil|Location1.Y=3311.954mil|Location2.Y=3319.621mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Arc (97.326mm,84.221mm) on Top Overlay And Text "AMIT      &lt;Glove For Deaf&gt;" (98.044mm,62.738mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4133.58mil|Location2.X=4147.138mil|Location1.Y=3220.385mil|Location2.Y=3231.635mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4133.58mil|Location2.X=4147.138mil|Location1.Y=3220.385mil|Location2.Y=3231.635mil|Absolute=True">Silk To Silk Clearance Constraint: (0.165mm &lt; 0.254mm) Between Text "100nF" (104.245mm,81.153mm) on Top Overlay And Track (105.193mm,82.114mm)(105.388mm,82.308mm) on Top Overlay Silk Text to Silk Clearance [0.165mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4242.7mil|Location2.X=4253.95mil|Location1.Y=3111.345mil|Location2.Y=3122.595mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4242.7mil|Location2.X=4253.95mil|Location1.Y=3111.345mil|Location2.Y=3122.595mil|Absolute=True">Silk To Silk Clearance Constraint: (0.123mm &lt; 0.254mm) Between Text "100nF" (104.245mm,81.153mm) on Top Overlay And Track (108.022mm,79.285mm)(108.216mm,79.48mm) on Top Overlay Silk Text to Silk Clearance [0.123mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4313.58mil|Location2.X=4327.138mil|Location1.Y=3220.385mil|Location2.Y=3231.635mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4313.58mil|Location2.X=4327.138mil|Location1.Y=3220.385mil|Location2.Y=3231.635mil|Absolute=True">Silk To Silk Clearance Constraint: (0.165mm &lt; 0.254mm) Between Text "100nF" (108.817mm,81.153mm) on Top Overlay And Track (109.765mm,82.114mm)(109.96mm,82.308mm) on Top Overlay Silk Text to Silk Clearance [0.165mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4422.7mil|Location2.X=4433.95mil|Location1.Y=3111.345mil|Location2.Y=3122.595mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4422.7mil|Location2.X=4433.95mil|Location1.Y=3111.345mil|Location2.Y=3122.595mil|Absolute=True">Silk To Silk Clearance Constraint: (0.123mm &lt; 0.254mm) Between Text "100nF" (108.817mm,81.153mm) on Top Overlay And Track (112.594mm,79.285mm)(112.788mm,79.48mm) on Top Overlay Silk Text to Silk Clearance [0.123mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4493.58mil|Location2.X=4507.138mil|Location1.Y=3220.385mil|Location2.Y=3231.635mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4493.58mil|Location2.X=4507.138mil|Location1.Y=3220.385mil|Location2.Y=3231.635mil|Absolute=True">Silk To Silk Clearance Constraint: (0.165mm &lt; 0.254mm) Between Text "100nF" (113.389mm,81.153mm) on Top Overlay And Track (114.337mm,82.114mm)(114.532mm,82.308mm) on Top Overlay Silk Text to Silk Clearance [0.165mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4602.7mil|Location2.X=4613.95mil|Location1.Y=3111.345mil|Location2.Y=3122.595mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4602.7mil|Location2.X=4613.95mil|Location1.Y=3111.345mil|Location2.Y=3122.595mil|Absolute=True">Silk To Silk Clearance Constraint: (0.123mm &lt; 0.254mm) Between Text "100nF" (113.389mm,81.153mm) on Top Overlay And Track (117.166mm,79.285mm)(117.36mm,79.48mm) on Top Overlay Silk Text to Silk Clearance [0.123mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4683.58mil|Location2.X=4697.138mil|Location1.Y=3225.385mil|Location2.Y=3236.635mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4683.58mil|Location2.X=4697.138mil|Location1.Y=3225.385mil|Location2.Y=3236.635mil|Absolute=True">Silk To Silk Clearance Constraint: (0.165mm &lt; 0.254mm) Between Text "100nF" (118.215mm,81.28mm) on Top Overlay And Track (119.163mm,82.241mm)(119.358mm,82.435mm) on Top Overlay Silk Text to Silk Clearance [0.165mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4792.7mil|Location2.X=4803.95mil|Location1.Y=3116.345mil|Location2.Y=3127.595mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4792.7mil|Location2.X=4803.95mil|Location1.Y=3116.345mil|Location2.Y=3127.595mil|Absolute=True">Silk To Silk Clearance Constraint: (0.123mm &lt; 0.254mm) Between Text "100nF" (118.215mm,81.28mm) on Top Overlay And Track (121.992mm,79.412mm)(122.186mm,79.607mm) on Top Overlay Silk Text to Silk Clearance [0.123mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3856.167mil|Location2.X=3863.833mil|Location1.Y=2827.726mil|Location2.Y=2835.393mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3856.167mil|Location2.X=3863.833mil|Location1.Y=2827.726mil|Location2.Y=2835.393mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "100nF" (98.933mm,71.755mm) on Top Overlay And Text "AMIT      &lt;Glove For Deaf&gt;" (98.044mm,62.738mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3899.099mil|Location2.X=3910.349mil|Location1.Y=2820.635mil|Location2.Y=2831.885mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3899.099mil|Location2.X=3910.349mil|Location1.Y=2820.635mil|Location2.Y=2831.885mil|Absolute=True">Silk To Silk Clearance Constraint: (0.24mm &lt; 0.254mm) Between Text "100nF" (98.933mm,71.755mm) on Top Overlay And Track (99.4mm,71.787mm)(99.675mm,71.787mm) on Top Overlay Silk Text to Silk Clearance [0.24mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3943.798mil|Location2.X=3957.242mil|Location1.Y=3220.178mil|Location2.Y=3231.428mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3943.798mil|Location2.X=3957.242mil|Location1.Y=3220.178mil|Location2.Y=3231.428mil|Absolute=True">Silk To Silk Clearance Constraint: (0.158mm &lt; 0.254mm) Between Text "100nF" (99.419mm,81.153mm) on Top Overlay And Track (100.377mm,82.103mm)(100.572mm,82.298mm) on Top Overlay Silk Text to Silk Clearance [0.158mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4053.103mil|Location2.X=4064.353mil|Location1.Y=3110.942mil|Location2.Y=3122.192mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4053.103mil|Location2.X=4064.353mil|Location1.Y=3110.942mil|Location2.Y=3122.192mil|Absolute=True">Silk To Silk Clearance Constraint: (0.123mm &lt; 0.254mm) Between Text "100nF" (99.419mm,81.153mm) on Top Overlay And Track (103.206mm,79.275mm)(103.4mm,79.469mm) on Top Overlay Silk Text to Silk Clearance [0.123mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4185.887mil|Location2.X=4197.137mil|Location1.Y=2585.906mil|Location2.Y=2599.218mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4185.887mil|Location2.X=4197.137mil|Location1.Y=2585.906mil|Location2.Y=2599.218mil|Absolute=True">Silk To Silk Clearance Constraint: (0.212mm &lt; 0.254mm) Between Text "47Kohm" (100.584mm,65.913mm) on Top Overlay And Track (106.655mm,65.221mm)(106.655mm,65.747mm) on Top Overlay Silk Text to Silk Clearance [0.212mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4185.887mil|Location2.X=4197.137mil|Location1.Y=2690.906mil|Location2.Y=2704.218mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4185.887mil|Location2.X=4197.137mil|Location1.Y=2690.906mil|Location2.Y=2704.218mil|Absolute=True">Silk To Silk Clearance Constraint: (0.212mm &lt; 0.254mm) Between Text "47Kohm" (100.584mm,68.58mm) on Top Overlay And Track (106.655mm,67.888mm)(106.655mm,68.414mm) on Top Overlay Silk Text to Silk Clearance [0.212mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4640.887mil|Location2.X=4652.137mil|Location1.Y=2580.906mil|Location2.Y=2594.218mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4640.887mil|Location2.X=4652.137mil|Location1.Y=2580.906mil|Location2.Y=2594.218mil|Absolute=True">Silk To Silk Clearance Constraint: (0.212mm &lt; 0.254mm) Between Text "47Kohm" (112.141mm,65.786mm) on Top Overlay And Track (118.212mm,65.094mm)(118.212mm,65.62mm) on Top Overlay Silk Text to Silk Clearance [0.212mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4643.352mil|Location2.X=4654.602mil|Location1.Y=2690.836mil|Location2.Y=2703.406mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4643.352mil|Location2.X=4654.602mil|Location1.Y=2690.836mil|Location2.Y=2703.406mil|Absolute=True">Silk To Silk Clearance Constraint: (0.098mm &lt; 0.254mm) Between Text "47Kohm" (112.268mm,68.58mm) on Top Overlay And Track (118.212mm,67.888mm)(118.212mm,68.414mm) on Top Overlay Silk Text to Silk Clearance [0.098mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4807.844mil|Location2.X=4821.156mil|Location1.Y=2880.887mil|Location2.Y=2892.137mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4807.844mil|Location2.X=4821.156mil|Location1.Y=2880.887mil|Location2.Y=2892.137mil|Absolute=True">Silk To Silk Clearance Constraint: (0.212mm &lt; 0.254mm) Between Text "47Kohm" (122.174mm,67.437mm) on Top Overlay And Track (122.34mm,73.508mm)(122.866mm,73.508mm) on Top Overlay Silk Text to Silk Clearance [0.212mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3974.928mil|Location2.X=3982.595mil|Location1.Y=3486.167mil|Location2.Y=3493.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3974.928mil|Location2.X=3982.595mil|Location1.Y=3486.167mil|Location2.Y=3493.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "A0" (101.727mm,88.646mm) on Top Overlay And Track (101.026mm,88.316mm)(101.026mm,94.041mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3998.765mil|Location2.X=4006.432mil|Location1.Y=3486.167mil|Location2.Y=3493.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3998.765mil|Location2.X=4006.432mil|Location1.Y=3486.167mil|Location2.Y=3493.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "A0" (101.727mm,88.646mm) on Top Overlay And Track (101.666mm,88.316mm)(101.666mm,94.041mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3999.375mil|Location2.X=4010.625mil|Location1.Y=3477.347mil|Location2.Y=3488.597mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3999.375mil|Location2.X=4010.625mil|Location1.Y=3477.347mil|Location2.Y=3488.597mil|Absolute=True">Silk To Silk Clearance Constraint: (0.103mm &lt; 0.254mm) Between Text "A0" (101.727mm,88.646mm) on Top Overlay And Track (97.386mm,88.316mm)(110.386mm,88.316mm) on Top Overlay Silk Text to Silk Clearance [0.103mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4174.928mil|Location2.X=4182.595mil|Location1.Y=3486.167mil|Location2.Y=3493.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4174.928mil|Location2.X=4182.595mil|Location1.Y=3486.167mil|Location2.Y=3493.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "A1" (106.807mm,88.646mm) on Top Overlay And Track (106.106mm,88.316mm)(106.106mm,94.041mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4198.765mil|Location2.X=4206.432mil|Location1.Y=3486.167mil|Location2.Y=3493.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4198.765mil|Location2.X=4206.432mil|Location1.Y=3486.167mil|Location2.Y=3493.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "A1" (106.807mm,88.646mm) on Top Overlay And Track (106.746mm,88.316mm)(106.746mm,94.041mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4199.375mil|Location2.X=4210.625mil|Location1.Y=3477.347mil|Location2.Y=3488.597mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4199.375mil|Location2.X=4210.625mil|Location1.Y=3477.347mil|Location2.Y=3488.597mil|Absolute=True">Silk To Silk Clearance Constraint: (0.103mm &lt; 0.254mm) Between Text "A1" (106.807mm,88.646mm) on Top Overlay And Track (97.386mm,88.316mm)(110.386mm,88.316mm) on Top Overlay Silk Text to Silk Clearance [0.103mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4404.375mil|Location2.X=4415.625mil|Location1.Y=3477.347mil|Location2.Y=3488.597mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4404.375mil|Location2.X=4415.625mil|Location1.Y=3477.347mil|Location2.Y=3488.597mil|Absolute=True">Silk To Silk Clearance Constraint: (0.103mm &lt; 0.254mm) Between Text "A2" (112.014mm,88.646mm) on Top Overlay And Track (110.086mm,88.316mm)(123.086mm,88.316mm) on Top Overlay Silk Text to Silk Clearance [0.103mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4379.928mil|Location2.X=4387.595mil|Location1.Y=3486.167mil|Location2.Y=3493.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4379.928mil|Location2.X=4387.595mil|Location1.Y=3486.167mil|Location2.Y=3493.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "A2" (112.014mm,88.646mm) on Top Overlay And Track (111.186mm,88.316mm)(111.186mm,94.041mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4398.765mil|Location2.X=4406.432mil|Location1.Y=3486.167mil|Location2.Y=3493.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4398.765mil|Location2.X=4406.432mil|Location1.Y=3486.167mil|Location2.Y=3493.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "A2" (112.014mm,88.646mm) on Top Overlay And Track (111.826mm,88.316mm)(111.826mm,94.041mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4604.375mil|Location2.X=4615.625mil|Location1.Y=3477.347mil|Location2.Y=3488.597mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4604.375mil|Location2.X=4615.625mil|Location1.Y=3477.347mil|Location2.Y=3488.597mil|Absolute=True">Silk To Silk Clearance Constraint: (0.103mm &lt; 0.254mm) Between Text "A3" (117.094mm,88.646mm) on Top Overlay And Track (110.086mm,88.316mm)(123.086mm,88.316mm) on Top Overlay Silk Text to Silk Clearance [0.103mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4579.928mil|Location2.X=4587.595mil|Location1.Y=3486.167mil|Location2.Y=3493.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4579.928mil|Location2.X=4587.595mil|Location1.Y=3486.167mil|Location2.Y=3493.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "A3" (117.094mm,88.646mm) on Top Overlay And Track (116.266mm,88.316mm)(116.266mm,94.041mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4598.765mil|Location2.X=4606.432mil|Location1.Y=3486.167mil|Location2.Y=3493.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4598.765mil|Location2.X=4606.432mil|Location1.Y=3486.167mil|Location2.Y=3493.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "A3" (117.094mm,88.646mm) on Top Overlay And Track (116.906mm,88.316mm)(116.906mm,94.041mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4804.375mil|Location2.X=4815.625mil|Location1.Y=3477.347mil|Location2.Y=3488.597mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4804.375mil|Location2.X=4815.625mil|Location1.Y=3477.347mil|Location2.Y=3488.597mil|Absolute=True">Silk To Silk Clearance Constraint: (0.103mm &lt; 0.254mm) Between Text "A4" (122.174mm,88.646mm) on Top Overlay And Track (110.086mm,88.316mm)(123.086mm,88.316mm) on Top Overlay Silk Text to Silk Clearance [0.103mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4779.928mil|Location2.X=4787.595mil|Location1.Y=3486.167mil|Location2.Y=3493.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4779.928mil|Location2.X=4787.595mil|Location1.Y=3486.167mil|Location2.Y=3493.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "A4" (122.174mm,88.646mm) on Top Overlay And Track (121.346mm,88.316mm)(121.346mm,94.041mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4798.765mil|Location2.X=4806.432mil|Location1.Y=3486.167mil|Location2.Y=3493.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4798.765mil|Location2.X=4806.432mil|Location1.Y=3486.167mil|Location2.Y=3493.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "A4" (122.174mm,88.646mm) on Top Overlay And Track (121.986mm,88.316mm)(121.986mm,94.041mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3854.696mil|Location2.X=3865.946mil|Location1.Y=3504.054mil|Location2.Y=3515.304mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3854.696mil|Location2.X=3865.946mil|Location1.Y=3504.054mil|Location2.Y=3515.304mil|Absolute=True">Silk To Silk Clearance Constraint: (0.016mm &lt; 0.254mm) Between Text "AMIT      &lt;Glove For Deaf&gt;" (98.044mm,62.738mm) on Top Overlay And Text "GND" (99.187mm,88.646mm) on Top Overlay Silk Text to Silk Clearance [0.016mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3786.167mil|Location2.X=3793.833mil|Location1.Y=2466.167mil|Location2.Y=2473.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3786.167mil|Location2.X=3793.833mil|Location1.Y=2466.167mil|Location2.Y=2473.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "AMIT      &lt;Glove For Deaf&gt;" (98.044mm,62.738mm) on Top Overlay And Track (96.266mm,62.738mm)(123.317mm,62.738mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3786.167mil|Location2.X=3793.833mil|Location1.Y=2466.167mil|Location2.Y=2473.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3786.167mil|Location2.X=3793.833mil|Location1.Y=2466.167mil|Location2.Y=2473.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "AMIT      &lt;Glove For Deaf&gt;" (98.044mm,62.738mm) on Top Overlay And Track (96.266mm,62.738mm)(96.266mm,91.821mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3786.167mil|Location2.X=3793.833mil|Location1.Y=3611.167mil|Location2.Y=3618.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3786.167mil|Location2.X=3793.833mil|Location1.Y=3611.167mil|Location2.Y=3618.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "AMIT      &lt;Glove For Deaf&gt;" (98.044mm,62.738mm) on Top Overlay And Track (96.266mm,91.821mm)(123.317mm,91.821mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3821.954mil|Location2.X=3829.621mil|Location1.Y=2822.427mil|Location2.Y=2830.093mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3821.954mil|Location2.X=3829.621mil|Location1.Y=2822.427mil|Location2.Y=2830.093mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "AMIT      &lt;Glove For Deaf&gt;" (98.044mm,62.738mm) on Top Overlay And Track (97.175mm,71.787mm)(97.175mm,75.787mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3821.954mil|Location2.X=3829.621mil|Location1.Y=2822.427mil|Location2.Y=2830.093mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3821.954mil|Location2.X=3829.621mil|Location1.Y=2822.427mil|Location2.Y=2830.093mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "AMIT      &lt;Glove For Deaf&gt;" (98.044mm,62.738mm) on Top Overlay And Track (97.175mm,71.787mm)(97.45mm,71.787mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3821.954mil|Location2.X=3829.621mil|Location1.Y=2979.907mil|Location2.Y=2987.573mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3821.954mil|Location2.X=3829.621mil|Location1.Y=2979.907mil|Location2.Y=2987.573mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "AMIT      &lt;Glove For Deaf&gt;" (98.044mm,62.738mm) on Top Overlay And Track (97.175mm,75.787mm)(97.45mm,75.787mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3830.261mil|Location2.X=3837.928mil|Location1.Y=3367.269mil|Location2.Y=3374.936mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3830.261mil|Location2.X=3837.928mil|Location1.Y=3367.269mil|Location2.Y=3374.936mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "AMIT      &lt;Glove For Deaf&gt;" (98.044mm,62.738mm) on Top Overlay And Track (97.386mm,85.626mm)(110.386mm,85.626mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3830.261mil|Location2.X=3837.928mil|Location1.Y=3367.269mil|Location2.Y=3374.936mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3830.261mil|Location2.X=3837.928mil|Location1.Y=3367.269mil|Location2.Y=3374.936mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "AMIT      &lt;Glove For Deaf&gt;" (98.044mm,62.738mm) on Top Overlay And Track (97.386mm,85.626mm)(97.386mm,88.316mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3856.167mil|Location2.X=3863.833mil|Location1.Y=3473.175mil|Location2.Y=3480.841mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3856.167mil|Location2.X=3863.833mil|Location1.Y=3473.175mil|Location2.Y=3480.841mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "AMIT      &lt;Glove For Deaf&gt;" (98.044mm,62.738mm) on Top Overlay And Track (97.386mm,88.316mm)(110.386mm,88.316mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4073.369mil|Location2.X=4081.035mil|Location1.Y=3512.405mil|Location2.Y=3520.072mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4073.369mil|Location2.X=4081.035mil|Location1.Y=3512.405mil|Location2.Y=3520.072mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "GND" (104.394mm,88.646mm) on Top Overlay And Track (103.566mm,88.316mm)(103.566mm,94.041mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4098.765mil|Location2.X=4106.432mil|Location1.Y=3486.167mil|Location2.Y=3493.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4098.765mil|Location2.X=4106.432mil|Location1.Y=3486.167mil|Location2.Y=3493.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "GND" (104.394mm,88.646mm) on Top Overlay And Track (104.206mm,88.316mm)(104.206mm,94.041mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4071.577mil|Location2.X=4082.827mil|Location1.Y=3477.347mil|Location2.Y=3488.597mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4071.577mil|Location2.X=4082.827mil|Location1.Y=3477.347mil|Location2.Y=3488.597mil|Absolute=True">Silk To Silk Clearance Constraint: (0.103mm &lt; 0.254mm) Between Text "GND" (104.394mm,88.646mm) on Top Overlay And Track (97.386mm,88.316mm)(110.386mm,88.316mm) on Top Overlay Silk Text to Silk Clearance [0.103mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4273.369mil|Location2.X=4281.035mil|Location1.Y=3512.405mil|Location2.Y=3520.072mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4273.369mil|Location2.X=4281.035mil|Location1.Y=3512.405mil|Location2.Y=3520.072mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "GND" (109.474mm,88.646mm) on Top Overlay And Track (108.646mm,88.316mm)(108.646mm,94.041mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4298.765mil|Location2.X=4306.432mil|Location1.Y=3486.167mil|Location2.Y=3493.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4298.765mil|Location2.X=4306.432mil|Location1.Y=3486.167mil|Location2.Y=3493.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "GND" (109.474mm,88.646mm) on Top Overlay And Track (109.286mm,88.316mm)(109.286mm,94.041mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4271.577mil|Location2.X=4282.827mil|Location1.Y=3477.347mil|Location2.Y=3488.597mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4271.577mil|Location2.X=4282.827mil|Location1.Y=3477.347mil|Location2.Y=3488.597mil|Absolute=True">Silk To Silk Clearance Constraint: (0.103mm &lt; 0.254mm) Between Text "GND" (109.474mm,88.646mm) on Top Overlay And Track (97.386mm,88.316mm)(110.386mm,88.316mm) on Top Overlay Silk Text to Silk Clearance [0.103mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4471.577mil|Location2.X=4482.827mil|Location1.Y=3477.347mil|Location2.Y=3488.597mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4471.577mil|Location2.X=4482.827mil|Location1.Y=3477.347mil|Location2.Y=3488.597mil|Absolute=True">Silk To Silk Clearance Constraint: (0.103mm &lt; 0.254mm) Between Text "GND" (114.554mm,88.646mm) on Top Overlay And Track (110.086mm,88.316mm)(123.086mm,88.316mm) on Top Overlay Silk Text to Silk Clearance [0.103mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4473.369mil|Location2.X=4481.035mil|Location1.Y=3512.405mil|Location2.Y=3520.072mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4473.369mil|Location2.X=4481.035mil|Location1.Y=3512.405mil|Location2.Y=3520.072mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "GND" (114.554mm,88.646mm) on Top Overlay And Track (113.726mm,88.316mm)(113.726mm,94.041mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4498.765mil|Location2.X=4506.432mil|Location1.Y=3486.167mil|Location2.Y=3493.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4498.765mil|Location2.X=4506.432mil|Location1.Y=3486.167mil|Location2.Y=3493.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "GND" (114.554mm,88.646mm) on Top Overlay And Track (114.366mm,88.316mm)(114.366mm,94.041mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4671.577mil|Location2.X=4682.827mil|Location1.Y=3477.347mil|Location2.Y=3488.597mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4671.577mil|Location2.X=4682.827mil|Location1.Y=3477.347mil|Location2.Y=3488.597mil|Absolute=True">Silk To Silk Clearance Constraint: (0.103mm &lt; 0.254mm) Between Text "GND" (119.634mm,88.646mm) on Top Overlay And Track (110.086mm,88.316mm)(123.086mm,88.316mm) on Top Overlay Silk Text to Silk Clearance [0.103mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4673.369mil|Location2.X=4681.035mil|Location1.Y=3512.405mil|Location2.Y=3520.072mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4673.369mil|Location2.X=4681.035mil|Location1.Y=3512.405mil|Location2.Y=3520.072mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "GND" (119.634mm,88.646mm) on Top Overlay And Track (118.806mm,88.316mm)(118.806mm,94.041mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4698.765mil|Location2.X=4706.432mil|Location1.Y=3486.167mil|Location2.Y=3493.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4698.765mil|Location2.X=4706.432mil|Location1.Y=3486.167mil|Location2.Y=3493.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "GND" (119.634mm,88.646mm) on Top Overlay And Track (119.446mm,88.316mm)(119.446mm,94.041mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3866.577mil|Location2.X=3877.827mil|Location1.Y=3477.347mil|Location2.Y=3488.597mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3866.577mil|Location2.X=3877.827mil|Location1.Y=3477.347mil|Location2.Y=3488.597mil|Absolute=True">Silk To Silk Clearance Constraint: (0.103mm &lt; 0.254mm) Between Text "GND" (99.187mm,88.646mm) on Top Overlay And Track (97.386mm,88.316mm)(110.386mm,88.316mm) on Top Overlay Silk Text to Silk Clearance [0.103mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3868.369mil|Location2.X=3876.035mil|Location1.Y=3512.405mil|Location2.Y=3520.072mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3868.369mil|Location2.X=3876.035mil|Location1.Y=3512.405mil|Location2.Y=3520.072mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "GND" (99.187mm,88.646mm) on Top Overlay And Track (98.486mm,88.316mm)(98.486mm,94.041mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3894.607mil|Location2.X=3902.274mil|Location1.Y=3486.167mil|Location2.Y=3493.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3894.607mil|Location2.X=3902.274mil|Location1.Y=3486.167mil|Location2.Y=3493.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "GND" (99.187mm,88.646mm) on Top Overlay And Track (99.126mm,88.316mm)(99.126mm,94.041mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3902.494mil|Location2.X=3913.744mil|Location1.Y=2471.875mil|Location2.Y=2483.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Lenovo\Desktop\GloveForDeaf\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3902.494mil|Location2.X=3913.744mil|Location1.Y=2471.875mil|Location2.Y=2483.125mil|Absolute=True">Silk To Silk Clearance Constraint: (0.127mm &lt; 0.254mm) Between Text "VCC GND A0 A1 A2 A3 A4" (98.933mm,63.119mm) on Top Overlay And Track (96.266mm,62.738mm)(123.317mm,62.738mm) on Top Overlay Silk Text to Silk Clearance [0.127mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

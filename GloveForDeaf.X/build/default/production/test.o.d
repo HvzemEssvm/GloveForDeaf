@@ -1,8 +1,9 @@
-build/default/production/seg_7.o.d build/default/production/seg_7.o: \
- seg_7.c seg_7.h led.h DIO.h \
- c:\program\ files\microchip\xc8\v2.50\avr\avr\include\stdio.h \
+build/default/production/test.o.d build/default/production/test.o: test.c \
+ c:\program\ files\microchip\xc8\v2.50\avr\avr\include\stdlib.h \
  c:\program\ files\microchip\xc8\v2.50\avr\avr\include\features.h \
  c:\program\ files\microchip\xc8\v2.50\avr\avr\include\bits\alltypes.h \
+ ADC.h DIO.h \
+ c:\program\ files\microchip\xc8\v2.50\avr\avr\include\stdio.h \
  c:\program\ files\microchip\xc8\v2.50\avr\lib\gcc\avr\5.4.0\include\stdint.h \
  c:\program\ files\microchip\xc8\v2.50\avr\avr\include\stdint.h \
  c:\program\ files\microchip\xc8\v2.50\avr\avr\include\bits\stdint.h \
@@ -14,21 +15,25 @@ build/default/production/seg_7.o.d build/default/production/seg_7.o: \
  c:\program\ files\microchip\xc8\v2.50\avr\avr\include\avr\common.h \
  c:\program\ files\microchip\xc8\v2.50\avr\avr\include\avr\fuse.h \
  c:\program\ files\microchip\xc8\v2.50\avr\avr\include\avr\lock.h \
+ c:\program\ files\microchip\xc8\v2.50\avr\avr\include\avr\io.h \
+ c:\program\ files\microchip\xc8\v2.50\avr\avr\include\avr\interrupt.h \
  c:\program\ files\microchip\xc8\v2.50\avr\avr\include\util\delay.h \
  c:\program\ files\microchip\xc8\v2.50\avr\avr\include\util\delay_basic.h \
- c:\program\ files\microchip\xc8\v2.50\avr\avr\include\math.h
+ c:\program\ files\microchip\xc8\v2.50\avr\avr\include\math.h lcd1602.h \
+ glove.h flex.h \
+ c:\program\ files\microchip\xc8\v2.50\avr\avr\include\string.h
 
-seg_7.h:
-
-led.h:
-
-DIO.h:
-
-c:\program\ files\microchip\xc8\v2.50\avr\avr\include\stdio.h:
+c:\program\ files\microchip\xc8\v2.50\avr\avr\include\stdlib.h:
 
 c:\program\ files\microchip\xc8\v2.50\avr\avr\include\features.h:
 
 c:\program\ files\microchip\xc8\v2.50\avr\avr\include\bits\alltypes.h:
+
+ADC.h:
+
+DIO.h:
+
+c:\program\ files\microchip\xc8\v2.50\avr\avr\include\stdio.h:
 
 c:\program\ files\microchip\xc8\v2.50\avr\lib\gcc\avr\5.4.0\include\stdint.h:
 
@@ -52,8 +57,20 @@ c:\program\ files\microchip\xc8\v2.50\avr\avr\include\avr\fuse.h:
 
 c:\program\ files\microchip\xc8\v2.50\avr\avr\include\avr\lock.h:
 
+c:\program\ files\microchip\xc8\v2.50\avr\avr\include\avr\io.h:
+
+c:\program\ files\microchip\xc8\v2.50\avr\avr\include\avr\interrupt.h:
+
 c:\program\ files\microchip\xc8\v2.50\avr\avr\include\util\delay.h:
 
 c:\program\ files\microchip\xc8\v2.50\avr\avr\include\util\delay_basic.h:
 
 c:\program\ files\microchip\xc8\v2.50\avr\avr\include\math.h:
+
+lcd1602.h:
+
+glove.h:
+
+flex.h:
+
+c:\program\ files\microchip\xc8\v2.50\avr\avr\include\string.h:
