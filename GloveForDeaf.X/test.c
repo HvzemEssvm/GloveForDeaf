@@ -6,11 +6,81 @@
 #define F_CPU 16000000UL
 #undef __OPTIMIZE__ //SUPERRRRRRRRRRRRRRRRRR IMPORTANTTTTTTTTTTTTTTT!!!!!
 #include <stdlib.h>
+#include <string.h>
+
 #include "ADC.h"
 #include "lcd1602.h"
 #include "glove.h"
-#include <string.h>
+#include "eeprom.h"
 
+lcd1602_t lcd_1;
+
+uint16_t addressHasher(int combination[5])
+{
+    uint16_t idx = 0;
+    int weight = 1;
+    for (int i = 4; i >= 0; i--) {
+        int base3_digit = combination[i] - 1;
+        idx += base3_digit * weight;
+        weight *= 3;
+    }
+    
+    LCD1602_CMD (&lcd_1,CMD_CLEAR_DISPLAY_RETURN_HOME);
+    LCD1602_INT (&lcd_1,(idx*50)%2048);
+    _delay_ms (2000);
+    return (idx*50)%2048;
+}
+
+void eepromWriter()
+{
+    EEPROM_ClearALL();
+    EEPROM_APPEND_CUSTOM_MEM ((uint8_t*)"Awesome!",
+                              addressHasher ((int[]){FLEX_STATE_CLOSED,FLEX_STATE_OPEN,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED,FLEX_STATE_OPEN}));
+    EEPROM_APPEND_CUSTOM_MEM ((uint8_t*)"I Love U",
+                              addressHasher ((int[]){FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED,FLEX_STATE_OPEN}));
+    EEPROM_APPEND_CUSTOM_MEM ((uint8_t*)"I really love U",
+                              addressHasher ((int[]){FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_CLOSED,FLEX_STATE_OPEN}));
+    EEPROM_APPEND_CUSTOM_MEM ((uint8_t*)"I watch U",
+                              addressHasher ((int[]){FLEX_STATE_CLOSED,FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED}));
+    EEPROM_APPEND_CUSTOM_MEM ((uint8_t*)"You",
+                              addressHasher ((int[]){FLEX_STATE_CLOSED,FLEX_STATE_OPEN,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED}));
+    EEPROM_APPEND_CUSTOM_MEM ((uint8_t*)"Good job!",
+                              addressHasher ((int[]){FLEX_STATE_OPEN,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED}));
+    EEPROM_APPEND_CUSTOM_MEM ((uint8_t*)"Question",
+                              addressHasher ((int[]){FLEX_STATE_CLOSED,FLEX_STATE_HALF,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED}));
+    EEPROM_APPEND_CUSTOM_MEM ((uint8_t*)"I agree",
+                              addressHasher ((int[]){FLEX_STATE_CLOSED,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED}));
+    EEPROM_APPEND_CUSTOM_MEM ((uint8_t*)"Quote",
+                              addressHasher ((int[]){FLEX_STATE_CLOSED,FLEX_STATE_HALF,FLEX_STATE_HALF,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED}));
+    EEPROM_APPEND_CUSTOM_MEM ((uint8_t*)"No",
+                              addressHasher ((int[]){FLEX_STATE_HALF,FLEX_STATE_HALF,FLEX_STATE_HALF,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED}));
+    EEPROM_APPEND_CUSTOM_MEM ((uint8_t*)"Made me laugh",
+                              addressHasher ((int[]){FLEX_STATE_HALF,FLEX_STATE_HALF,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED}));
+    EEPROM_APPEND_CUSTOM_MEM ((uint8_t*)"Hello",
+                              addressHasher ((int[]){FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_OPEN}));
+    EEPROM_APPEND_CUSTOM_MEM ((uint8_t*)"Not sure",
+                              addressHasher ((int[]){FLEX_STATE_OPEN,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED,FLEX_STATE_OPEN}));
+    EEPROM_APPEND_CUSTOM_MEM ((uint8_t*)"I am fine",
+                              addressHasher ((int[]){FLEX_STATE_HALF,FLEX_STATE_HALF,FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_OPEN}));
+    EEPROM_APPEND_CUSTOM_MEM ((uint8_t*)"Thanks",
+                              addressHasher ((int[]){FLEX_STATE_CLOSED,FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_OPEN}));
+    EEPROM_APPEND_CUSTOM_MEM ((uint8_t*)"Thanks",
+                              addressHasher ((int[]){FLEX_STATE_HALF,FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_OPEN}));
+}   
+
+void eepromReader(uint8_t states[5],char buffer[],int bufferSize)
+{
+    char str[bufferSize];
+    EEPROM_ReadString (addressHasher (states),(uint8_t*)str,bufferSize);
+    if(str == NULL || strlen(str)<=1)
+    {
+        strcpy (buffer,"");
+    }
+    else
+    {
+        strcpy (buffer,str);
+    }    
+}
 
 void updateLCD(lcd1602_t* lcd,uint8_t states[],uint8_t prev_states[], uint8_t size)
 {
@@ -26,17 +96,15 @@ void updateLCD(lcd1602_t* lcd,uint8_t states[],uint8_t prev_states[], uint8_t si
     if(isDiff)
     {
         LCD1602_CMD (lcd,CMD_CLEAR_DISPLAY_RETURN_HOME);
-        for(int i = 0 ; i<size;i++)
-        {
-            LCD1602_INT (lcd,states[i]);
-            LCD1602_STR (lcd,",");
-        }
+        char str[50];
+        eepromReader (states,str,50);
+        LCD1602_STR (lcd,str);
     }
 }
 
 int main()
 {
-    lcd1602_t lcd_1;
+    
     flex_t flexs[5];
     glove_t glove;
     uint8_t states[5]={FLEX_STATE_NULL,FLEX_STATE_NULL,FLEX_STATE_NULL,FLEX_STATE_NULL,FLEX_STATE_NULL};;
@@ -52,6 +120,9 @@ int main()
     
     LCD1602_INIT (&lcd_1,A7,A6,A5,A4,B1,B2,FALSE,FALSE,FALSE);
     
+    EEPROM_INIT ();
+    _delay_ms (50);
+    eepromWriter ();
     sei();
     
     LCD1602_CMD (&lcd_1,CMD_CLEAR_DISPLAY_RETURN_HOME);

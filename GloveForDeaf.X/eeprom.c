@@ -68,15 +68,19 @@ void EEPROM_ClearALL(){
     }
 }
 
-void EEPROM_Init(){
+void EEPROM_INIT(){
     TWI_Init();
 //    EEPROM_Find_empty_slot();
     EEPROM_LoadLastAddress();
 }
 
 uint16_t EEPROM_APPEND(const uint8_t * data){
-     
-    uint16_t StartAddress = MemoryAddress;
+   return EEPROM_APPEND_CUSTOM_MEM(data,MemoryAddress);
+}
+
+uint16_t EEPROM_APPEND_CUSTOM_MEM(const uint8_t * data,uint16_t StartAddress){
+    
+    MemoryAddress = StartAddress;
     uint16_t len = 0;
     while(data[len] != 0) {
         len++;
@@ -100,12 +104,12 @@ uint16_t EEPROM_APPEND(const uint8_t * data){
         bytesWritten += length;
         
     }
-    EEPROM_SaveLastAddress();
-    return StartAddress;
+//    EEPROM_SaveLastAddress();
+    return MemoryAddress;
     
 }
 
-void EEPROM_ReadString(uint16_t startAddr, uint8_t * buffer) {
+void EEPROM_ReadString(uint16_t startAddr, uint8_t * buffer,unsigned int bufferSize) {
     
     uint8_t dev_addr_read = (EEPROM_PrepareAddressWrite(startAddr)) | 0x01;
     TWI_Start();
@@ -117,7 +121,7 @@ void EEPROM_ReadString(uint16_t startAddr, uint8_t * buffer) {
         data = TWI_ReadACK();
         buffer[i] = data;
         
-        if (data == 0 || i>=50){
+        if (data == 0 || i>=bufferSize){
             TWI_ReadNACK();
             break;
         }

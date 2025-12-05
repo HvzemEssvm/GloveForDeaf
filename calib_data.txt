@@ -1,7 +1,7 @@
 finger[4]:
 
 closed:	> 61.5
-half_closed: 60.5<= x < 61.5
+half_closed: in between
 open: <60.5k
 ---------------------------------------------------
 finger[3]:
@@ -13,19 +13,19 @@ open: <56.5k
 finger[2]:
 
 closed: > 53.3
-half_closed: bet them.
+half_closed: in between
 open: <52.5k
 ---------------------------------------------------
 finger[1]:
 
 closed: >82k
-half_closed: bet them 
+half_closed: in between
 open: <80k
 ---------------------------------------------------
 finger[0]:
 
 closed: 43.5>
-half_closed:
+half_closed: in between
 open: <43k
 ---------------------------------------------------
 

@@ -25,7 +25,7 @@
 //int main(){
 //    LCD1602_INIT(&LCD_1,LCD_D7,LCD_D6,LCD_D5,LCD_D4,LCD_D3,LCD_D2,LCD_D1,LCD_D0,LCD_RS,LCD_E,TRUE,TRUE,FALSE);
 //    
-//    EEPROM_Init();
+//    EEPROM_INIT();
 ////    EEPROM_ClearALL(); //run it ONLY ONCE before saving anything
 ////    
 ////    uint16_t addr_hello = EEPROM_APPEND((uint8_t)"Hello");

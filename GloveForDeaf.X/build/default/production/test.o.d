@@ -2,8 +2,8 @@ build/default/production/test.o.d build/default/production/test.o: test.c \
  c:\program\ files\microchip\xc8\v2.50\avr\avr\include\stdlib.h \
  c:\program\ files\microchip\xc8\v2.50\avr\avr\include\features.h \
  c:\program\ files\microchip\xc8\v2.50\avr\avr\include\bits\alltypes.h \
- ADC.h DIO.h \
- c:\program\ files\microchip\xc8\v2.50\avr\avr\include\stdio.h \
+ c:\program\ files\microchip\xc8\v2.50\avr\avr\include\string.h ADC.h \
+ DIO.h c:\program\ files\microchip\xc8\v2.50\avr\avr\include\stdio.h \
  c:\program\ files\microchip\xc8\v2.50\avr\lib\gcc\avr\5.4.0\include\stdint.h \
  c:\program\ files\microchip\xc8\v2.50\avr\avr\include\stdint.h \
  c:\program\ files\microchip\xc8\v2.50\avr\avr\include\bits\stdint.h \
@@ -20,14 +20,15 @@ build/default/production/test.o.d build/default/production/test.o: test.c \
  c:\program\ files\microchip\xc8\v2.50\avr\avr\include\util\delay.h \
  c:\program\ files\microchip\xc8\v2.50\avr\avr\include\util\delay_basic.h \
  c:\program\ files\microchip\xc8\v2.50\avr\avr\include\math.h lcd1602.h \
- glove.h flex.h \
- c:\program\ files\microchip\xc8\v2.50\avr\avr\include\string.h
+ glove.h flex.h eeprom.h TWI.h
 
 c:\program\ files\microchip\xc8\v2.50\avr\avr\include\stdlib.h:
 
 c:\program\ files\microchip\xc8\v2.50\avr\avr\include\features.h:
 
 c:\program\ files\microchip\xc8\v2.50\avr\avr\include\bits\alltypes.h:
+
+c:\program\ files\microchip\xc8\v2.50\avr\avr\include\string.h:
 
 ADC.h:
 
@@ -73,4 +74,6 @@ glove.h:
 
 flex.h:
 
-c:\program\ files\microchip\xc8\v2.50\avr\avr\include\string.h:
+eeprom.h:
+
+TWI.h:
