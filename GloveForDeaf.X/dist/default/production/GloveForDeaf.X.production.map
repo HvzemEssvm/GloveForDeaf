@@ -113,11 +113,7 @@ Discarded input sections
  .text          0x0000000000000000        0x0 build/default/production/main.o
  .data          0x0000000000000000        0x0 build/default/production/main.o
  .bss           0x0000000000000000        0x0 build/default/production/main.o
- .debug_info    0x0000000000000000      0x241 build/default/production/main.o
- .debug_abbrev  0x0000000000000000       0x1b build/default/production/main.o
- .debug_aranges
-                0x0000000000000000       0x18 build/default/production/main.o
- .debug_line    0x0000000000000000       0x1a build/default/production/main.o
+ .debug_line    0x0000000000000000        0x0 build/default/production/main.o
  .debug_str     0x0000000000000000        0x0 build/default/production/main.o
  .comment       0x0000000000000000       0x30 build/default/production/main.o
  .text          0x0000000000000000        0x0 build/default/production/DIO.o
@@ -242,6 +238,70 @@ Discarded input sections
  .text          0x0000000000000000        0x0 build/default/production/glove.o
  .data          0x0000000000000000        0x0 build/default/production/glove.o
  .bss           0x0000000000000000        0x0 build/default/production/glove.o
+ .text          0x0000000000000000        0x0 build/default/production/eeprom.o
+ .data          0x0000000000000000        0x0 build/default/production/eeprom.o
+ .bss           0x0000000000000000        0x0 build/default/production/eeprom.o
+ .text.EEPROM_PrepareAddressWrite
+                0x0000000000000000       0x26 build/default/production/eeprom.o
+ .text.EEPROM_ReadString
+                0x0000000000000000       0x44 build/default/production/eeprom.o
+ .text.EEPROM_WriteByte
+                0x0000000000000000       0x1e build/default/production/eeprom.o
+ .text.EEPROM_Save_Address_Of_Sent_To_Block1
+                0x0000000000000000       0x2c build/default/production/eeprom.o
+ .text.EEPROM_WritePage
+                0x0000000000000000       0x4e build/default/production/eeprom.o
+ .text.EEPROM_ClearALL
+                0x0000000000000000       0x5c build/default/production/eeprom.o
+ .text.EEPROM_APPEND
+                0x0000000000000000       0xd2 build/default/production/eeprom.o
+ .text.EEPROM_ReadByte
+                0x0000000000000000       0x24 build/default/production/eeprom.o
+ .text.EEPROM_Init
+                0x0000000000000000       0x40 build/default/production/eeprom.o
+ .text.EEPROM_Get_Address_From_Block1
+                0x0000000000000000       0x34 build/default/production/eeprom.o
+ .text.EEPROM_ReadSequential
+                0x0000000000000000       0x84 build/default/production/eeprom.o
+ .bss.MemoryAddress
+                0x0000000000000000        0x2 build/default/production/eeprom.o
+ .debug_info    0x0000000000000000      0xc4b build/default/production/eeprom.o
+ .debug_abbrev  0x0000000000000000      0x1e0 build/default/production/eeprom.o
+ .debug_loc     0x0000000000000000      0x7aa build/default/production/eeprom.o
+ .debug_aranges
+                0x0000000000000000       0x70 build/default/production/eeprom.o
+ .debug_ranges  0x0000000000000000       0x60 build/default/production/eeprom.o
+ .debug_line    0x0000000000000000      0x3a9 build/default/production/eeprom.o
+ .debug_str     0x0000000000000000       0x86 build/default/production/eeprom.o
+ .comment       0x0000000000000000       0x30 build/default/production/eeprom.o
+ .debug_frame   0x0000000000000000      0x1b4 build/default/production/eeprom.o
+ .text          0x0000000000000000        0x0 build/default/production/TWI.o
+ .data          0x0000000000000000        0x0 build/default/production/TWI.o
+ .bss           0x0000000000000000        0x0 build/default/production/TWI.o
+ .text.TWI_Init
+                0x0000000000000000        0xc build/default/production/TWI.o
+ .text.TWI_Start
+                0x0000000000000000        0xc build/default/production/TWI.o
+ .text.TWI_Stop
+                0x0000000000000000        0x6 build/default/production/TWI.o
+ .text.TWI_WriteAddress
+                0x0000000000000000        0xe build/default/production/TWI.o
+ .text.TWI_Write
+                0x0000000000000000        0xe build/default/production/TWI.o
+ .text.TWI_ReadACK
+                0x0000000000000000        0xe build/default/production/TWI.o
+ .text.TWI_ReadNACK
+                0x0000000000000000        0xe build/default/production/TWI.o
+ .debug_info    0x0000000000000000      0x347 build/default/production/TWI.o
+ .debug_abbrev  0x0000000000000000       0x89 build/default/production/TWI.o
+ .debug_loc     0x0000000000000000       0x5a build/default/production/TWI.o
+ .debug_aranges
+                0x0000000000000000       0x50 build/default/production/TWI.o
+ .debug_ranges  0x0000000000000000       0x40 build/default/production/TWI.o
+ .debug_line    0x0000000000000000      0x177 build/default/production/TWI.o
+ .debug_str     0x0000000000000000        0x0 build/default/production/TWI.o
+ .comment       0x0000000000000000       0x30 build/default/production/TWI.o
+ .debug_frame   0x0000000000000000       0x84 build/default/production/TWI.o
  .data          0x0000000000000000        0x0 c:/program files/microchip/xc8/v2.50/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(addsf3.o)
  .bss           0x0000000000000000        0x0 c:/program files/microchip/xc8/v2.50/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(addsf3.o)
  .stack.descriptors
@@ -589,6 +649,8 @@ LOAD build/default/production/test.o
 LOAD build/default/production/buzzer.o
 LOAD build/default/production/flex.o
 LOAD build/default/production/glove.o
+LOAD build/default/production/eeprom.o
+LOAD build/default/production/TWI.o
 START GROUP
 LOAD c:/program files/microchip/xc8/v2.50/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a
 END GROUP

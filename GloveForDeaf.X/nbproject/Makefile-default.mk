@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c DIO.c lcd1602.c INTERRUPT.c ADC.c TIMER.c test.c buzzer.c flex.c glove.c
+SOURCEFILES_QUOTED_IF_SPACED=main.c DIO.c lcd1602.c INTERRUPT.c ADC.c TIMER.c test.c buzzer.c flex.c glove.c eeprom.c TWI.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/DIO.o ${OBJECTDIR}/lcd1602.o ${OBJECTDIR}/INTERRUPT.o ${OBJECTDIR}/ADC.o ${OBJECTDIR}/TIMER.o ${OBJECTDIR}/test.o ${OBJECTDIR}/buzzer.o ${OBJECTDIR}/flex.o ${OBJECTDIR}/glove.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/DIO.o.d ${OBJECTDIR}/lcd1602.o.d ${OBJECTDIR}/INTERRUPT.o.d ${OBJECTDIR}/ADC.o.d ${OBJECTDIR}/TIMER.o.d ${OBJECTDIR}/test.o.d ${OBJECTDIR}/buzzer.o.d ${OBJECTDIR}/flex.o.d ${OBJECTDIR}/glove.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/DIO.o ${OBJECTDIR}/lcd1602.o ${OBJECTDIR}/INTERRUPT.o ${OBJECTDIR}/ADC.o ${OBJECTDIR}/TIMER.o ${OBJECTDIR}/test.o ${OBJECTDIR}/buzzer.o ${OBJECTDIR}/flex.o ${OBJECTDIR}/glove.o ${OBJECTDIR}/eeprom.o ${OBJECTDIR}/TWI.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/DIO.o.d ${OBJECTDIR}/lcd1602.o.d ${OBJECTDIR}/INTERRUPT.o.d ${OBJECTDIR}/ADC.o.d ${OBJECTDIR}/TIMER.o.d ${OBJECTDIR}/test.o.d ${OBJECTDIR}/buzzer.o.d ${OBJECTDIR}/flex.o.d ${OBJECTDIR}/glove.o.d ${OBJECTDIR}/eeprom.o.d ${OBJECTDIR}/TWI.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/DIO.o ${OBJECTDIR}/lcd1602.o ${OBJECTDIR}/INTERRUPT.o ${OBJECTDIR}/ADC.o ${OBJECTDIR}/TIMER.o ${OBJECTDIR}/test.o ${OBJECTDIR}/buzzer.o ${OBJECTDIR}/flex.o ${OBJECTDIR}/glove.o
+OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/DIO.o ${OBJECTDIR}/lcd1602.o ${OBJECTDIR}/INTERRUPT.o ${OBJECTDIR}/ADC.o ${OBJECTDIR}/TIMER.o ${OBJECTDIR}/test.o ${OBJECTDIR}/buzzer.o ${OBJECTDIR}/flex.o ${OBJECTDIR}/glove.o ${OBJECTDIR}/eeprom.o ${OBJECTDIR}/TWI.o
 
 # Source Files
-SOURCEFILES=main.c DIO.c lcd1602.c INTERRUPT.c ADC.c TIMER.c test.c buzzer.c flex.c glove.c
+SOURCEFILES=main.c DIO.c lcd1602.c INTERRUPT.c ADC.c TIMER.c test.c buzzer.c flex.c glove.c eeprom.c TWI.c
 
 
 
@@ -148,6 +148,18 @@ ${OBJECTDIR}/glove.o: glove.c  .generated_files/flags/default/d191d5928d7c27e5b9
 	@${RM} ${OBJECTDIR}/glove.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG  -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -fno-common -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3 -mno-const-data-in-progmem     -MD -MP -MF "${OBJECTDIR}/glove.o.d" -MT "${OBJECTDIR}/glove.o.d" -MT ${OBJECTDIR}/glove.o -o ${OBJECTDIR}/glove.o glove.c 
 	
+${OBJECTDIR}/eeprom.o: eeprom.c  .generated_files/flags/default/3a4a54f88a4bb30198bed3ffcdf42c73da2991a9 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/eeprom.o.d 
+	@${RM} ${OBJECTDIR}/eeprom.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG  -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -fno-common -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3 -mno-const-data-in-progmem     -MD -MP -MF "${OBJECTDIR}/eeprom.o.d" -MT "${OBJECTDIR}/eeprom.o.d" -MT ${OBJECTDIR}/eeprom.o -o ${OBJECTDIR}/eeprom.o eeprom.c 
+	
+${OBJECTDIR}/TWI.o: TWI.c  .generated_files/flags/default/51e471687b7ba7cedf9fea66adfc848999e13c1c .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/TWI.o.d 
+	@${RM} ${OBJECTDIR}/TWI.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG  -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -fno-common -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3 -mno-const-data-in-progmem     -MD -MP -MF "${OBJECTDIR}/TWI.o.d" -MT "${OBJECTDIR}/TWI.o.d" -MT ${OBJECTDIR}/TWI.o -o ${OBJECTDIR}/TWI.o TWI.c 
+	
 else
 ${OBJECTDIR}/main.o: main.c  .generated_files/flags/default/3dfc00cf247b406b88342f8730ae7a6bc7e5411f .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
@@ -208,6 +220,18 @@ ${OBJECTDIR}/glove.o: glove.c  .generated_files/flags/default/baec4272a505cfacf6
 	@${RM} ${OBJECTDIR}/glove.o.d 
 	@${RM} ${OBJECTDIR}/glove.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -fno-common -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3 -mno-const-data-in-progmem     -MD -MP -MF "${OBJECTDIR}/glove.o.d" -MT "${OBJECTDIR}/glove.o.d" -MT ${OBJECTDIR}/glove.o -o ${OBJECTDIR}/glove.o glove.c 
+	
+${OBJECTDIR}/eeprom.o: eeprom.c  .generated_files/flags/default/de4efb0a7c4b43fa977c93d53178f64dfd078a2d .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/eeprom.o.d 
+	@${RM} ${OBJECTDIR}/eeprom.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -fno-common -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3 -mno-const-data-in-progmem     -MD -MP -MF "${OBJECTDIR}/eeprom.o.d" -MT "${OBJECTDIR}/eeprom.o.d" -MT ${OBJECTDIR}/eeprom.o -o ${OBJECTDIR}/eeprom.o eeprom.c 
+	
+${OBJECTDIR}/TWI.o: TWI.c  .generated_files/flags/default/3d3cd0bb520e2a2e1bec601452c6386324ac28de .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/TWI.o.d 
+	@${RM} ${OBJECTDIR}/TWI.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -fno-common -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3 -mno-const-data-in-progmem     -MD -MP -MF "${OBJECTDIR}/TWI.o.d" -MT "${OBJECTDIR}/TWI.o.d" -MT ${OBJECTDIR}/TWI.o -o ${OBJECTDIR}/TWI.o TWI.c 
 	
 endif
 

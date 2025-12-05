@@ -12,6 +12,8 @@
       <itemPath>buzzer.h</itemPath>
       <itemPath>flex.h</itemPath>
       <itemPath>glove.h</itemPath>
+      <itemPath>eeprom.h</itemPath>
+      <itemPath>TWI.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -35,8 +37,13 @@
       <itemPath>buzzer.c</itemPath>
       <itemPath>flex.c</itemPath>
       <itemPath>glove.c</itemPath>
+      <itemPath>eeprom.c</itemPath>
+      <itemPath>TWI.c</itemPath>
     </logicalFolder>
   </logicalFolder>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="default" type="2">
