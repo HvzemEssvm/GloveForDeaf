@@ -27,7 +27,7 @@ void FLEX_SAMPLE(flex_t* FLEX)
     }
 }
 
-uint8_t FLEX_GET_STATE(const flex_t* FLEX)
+int FLEX_GET_STATE(const flex_t* FLEX)
 {
     return FLEX->STATE;
 }

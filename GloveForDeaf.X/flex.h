@@ -19,14 +19,14 @@ typedef struct
   float RES_CLOSED;
   float RES_OPEN;
   uint8_t PORT_PIN_ADC;
-  uint8_t STATE;
+  int STATE;
 }flex_t;
 
 void FLEX_INIT(flex_t* FLEX,float RES_CLOSED,float RES_OPEN,uint8_t PORT_PIN_ADC);
 
 void FLEX_SAMPLE(flex_t* FLEX);
 
-uint8_t FLEX_GET_STATE(const flex_t* FLEX);
+int FLEX_GET_STATE(const flex_t* FLEX);
 
 #endif	/* FLEX_H */
 

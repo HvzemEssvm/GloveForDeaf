@@ -19,14 +19,14 @@
 void EEPROM_Save_Address_Of_Sent_To_Block1(uint8_t index, uint16_t sentence_address);
 uint16_t EEPROM_Get_Address_From_Block1(uint8_t index);
 
-void EEPROM_ReadString(uint16_t startAddr, uint8_t * buffer,unsigned int bufferSize);
+void EEPROM_ReadString(uint16_t startAddr, char buffer[],unsigned int bufferSize);
 
 void EEPROM_ClearALL();
-uint16_t EEPROM_APPEND(const uint8_t * data);
-uint16_t EEPROM_APPEND_CUSTOM_MEM(const uint8_t * data,uint16_t StartAddress);
+uint16_t EEPROM_APPEND(char data[]);
+uint16_t EEPROM_APPEND_CUSTOM_MEM(char data[],uint16_t StartAddress);
 void EEPROM_INIT();
-void EEPROM_WriteByte(uint16_t MemoryAddress, const uint8_t Data);
-void EEPROM_WritePage(uint16_t MemoryAddress, const uint8_t* Data,uint8_t length);
+void EEPROM_WriteByte(uint16_t MemoryAddress, char Data);
+void EEPROM_WritePage(uint16_t MemoryAddress, char Data[],uint8_t length);
 uint8_t EEPROM_ReadByte(uint16_t MemoryAddress);
 void EEPROM_ReadSequential(uint16_t MemoryAddress, uint8_t * Data,uint8_t length);
 

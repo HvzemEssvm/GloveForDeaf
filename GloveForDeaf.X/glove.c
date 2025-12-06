@@ -1,6 +1,6 @@
 #include "glove.h"
 
-void GLOVE_INIT(glove_t* GLOVE, flex_t FLEX[],uint8_t SIZE)
+void GLOVE_INIT(glove_t* GLOVE, flex_t FLEX[],int SIZE)
 {
     GLOVE->SIZE = SIZE;
     GLOVE->FLEX = FLEX;
@@ -17,7 +17,7 @@ void GLOVE_SAMPLE(glove_t* GLOVE)
 /*
  * @returns FLEX_STATE value in the given array
  */
-void GLOVE_GET_STATES(const glove_t* GLOVE, uint8_t STATES_ARR[], uint8_t STATES_ARR_SIZE)
+void GLOVE_GET_STATES(const glove_t* GLOVE, int STATES_ARR[], int STATES_ARR_SIZE)
 {
     if(STATES_ARR_SIZE<=GLOVE->SIZE)
     {
