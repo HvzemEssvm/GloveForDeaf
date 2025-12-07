@@ -76,7 +76,7 @@ void eepromReader(int states[5],char buffer[],int bufferSize)
     }    
 }
 
-void updateLCD(lcd1602_t* lcd,int states[],uint8_t prev_states[], uint8_t size)
+void updateLCD(lcd1602_t* lcd,int states[],int prev_states[], uint8_t size)
 {
     bool_t isDiff = FALSE;
     for(int i = 0 ; i<size;i++)
@@ -96,6 +96,61 @@ void updateLCD(lcd1602_t* lcd,int states[],uint8_t prev_states[], uint8_t size)
     }
 }
 
+void calib_flex(lcd1602_t* lcd, uint8_t port_pins_adc[], float RES_OPEN[],float RES_CLOSED[],int size)
+{
+    SET_PIN_DIR (A4,OUTPUT);// to handle that kit has A4 for LCD and ADC
+    _delay_ms(20);
+    
+    LCD1602_CMD (lcd,CMD_CLEAR_DISPLAY_RETURN_HOME);
+    LCD1602_STR (lcd,"Calibrating...");
+    _delay_ms(2000);
+    LCD1602_CMD (lcd,CMD_CLEAR_DISPLAY_RETURN_HOME);
+    LCD1602_STR (lcd,"Open your hand widely");
+    _delay_ms(2000);
+    
+    SET_PIN (A4,LOW);
+    SET_PIN_DIR (A4,INPUT);// to handle that kit has A4 for LCD and ADC
+    _delay_ms(20);
+    for(int i=0;i<size;i++)
+    {
+        ADC_CHANGE_CHANNEL (port_pins_adc[i]);
+        ADC_MANUAL_SAMPLE ();
+        ADC_READ ();
+        ADC_MANUAL_SAMPLE ();
+        float val = (((float)ADC_READ())/1023.0f)*5;
+        val = 47000.0f / (5.0f/val - 1.0f);
+        RES_OPEN[i] = val;
+    }
+    
+    SET_PIN_DIR (A4,OUTPUT);// to handle that kit has A4 for LCD and ADC
+    _delay_ms(20);
+    LCD1602_CMD (lcd,CMD_CLEAR_DISPLAY_RETURN_HOME);
+    LCD1602_STR (lcd,"Close your hand firmly");
+    _delay_ms(2000);
+    
+    SET_PIN (A4,LOW);
+    SET_PIN_DIR (A4,INPUT);// to handle that kit has A4 for LCD and ADC
+    _delay_ms(20);
+    for(int i=0;i<size;i++)
+    {
+        ADC_CHANGE_CHANNEL (port_pins_adc[i]);
+        ADC_MANUAL_SAMPLE ();
+        ADC_READ ();
+        ADC_MANUAL_SAMPLE ();
+        float val = (((float)ADC_READ())/1023.0f)*5;
+        val = 47000.0f / (5.0f/val - 1.0f);
+        RES_CLOSED[i] = val;
+    }
+    
+    SET_PIN_DIR (A4,OUTPUT);// to handle that kit has A4 for LCD and ADC
+    _delay_ms(20);
+    
+    LCD1602_CMD (lcd,CMD_CLEAR_DISPLAY_RETURN_HOME);
+    LCD1602_STR (lcd,"Finished calibration");
+    _delay_ms(2000);
+    LCD1602_CMD (lcd,CMD_CLEAR_DISPLAY_RETURN_HOME);
+}
+
 int main()
 {
     lcd1602_t lcd_1;
@@ -103,110 +158,42 @@ int main()
     glove_t glove;
     int states[5]={FLEX_STATE_NULL};
     int prev_states[5]={FLEX_STATE_NULL};
-    
-    FLEX_INIT (flexs+0,43500.0f,43000.0f,A0); 
-    FLEX_INIT (flexs+1,82000.0f,80000.0f,A1);
-    FLEX_INIT (flexs+2,53300.0f,52500.0f,A2);
-    FLEX_INIT (flexs+3,57500.0f,56500.0f,A3);
-    FLEX_INIT (flexs+4,61500.0f,60500.0f,A4);
-    GLOVE_INIT (&glove,flexs,5);
-    
+    float RES_OPEN[5];
+    float RES_CLOSED[5];
+    uint8_t port_pins_adc[5] = {A0,A1,A2,A3,A4};
     LCD1602_INIT (&lcd_1,A7,A6,A5,A4,B1,B2,FALSE,FALSE,FALSE);
+    _delay_ms(10);
     
-    EEPROM_INIT ();
+    calib_flex(&lcd_1,port_pins_adc,RES_OPEN,RES_CLOSED,5);
     
+    for(int i = 0; i<5;i++)
+    {
+        LCD1602_CMD (&lcd_1,CMD_CLEAR_DISPLAY_RETURN_HOME);
+        LCD1602_FLOAT (&lcd_1,RES_OPEN[i]);
+        LCD1602_STR (&lcd_1,",");
+        LCD1602_FLOAT (&lcd_1,RES_CLOSED[i]);
+        _delay_ms(2000);
+        FLEX_INIT (flexs+i,RES_CLOSED[i],RES_OPEN[i],port_pins_adc[i]); 
+    }
+    GLOVE_INIT (&glove,flexs,5);
+    EEPROM_INIT ();    
     _delay_ms (50);
-    
     eepromWriter ();
     sei();
-    
     LCD1602_CMD (&lcd_1,CMD_CLEAR_DISPLAY_RETURN_HOME);
     while(1)
     {
-        SET_PIN(A4,LOW);
+        SET_PIN (A4,LOW);
         SET_PIN_DIR (A4,INPUT);// to handle that kit has A4 for LCD and ADC
-        _delay_ms(5);
+        _delay_ms(20);
         GLOVE_SAMPLE (&glove);
         GLOVE_GET_STATES (&glove,states,5);
+        
         SET_PIN_DIR (A4,OUTPUT);// to handle that kit has A4 for LCD and ADC
-        _delay_ms(5); 
+        _delay_ms(20); 
         updateLCD(&lcd_1,states,prev_states,5);
-        _delay_ms (10);
+        _delay_ms (20);
     }
     
     return EXIT_SUCCESS;
 }
-
-
-
-///* 
-// * File:   main.c
-// * Author: Hazem
-// */
-//
-//#define F_CPU 16000000UL
-//#undef __OPTIMIZE__ //SUPERRRRRRRRRRRRRRRRRR IMPORTANTTTTTTTTTTTTTTT!!!!!
-//#include <stdlib.h>
-//#include "ADC.h"
-//#include "lcd1602.h"
-//#include "glove.h"
-//#include <string.h>
-//
-//
-//void updateLCD(lcd1602_t* lcd,uint8_t states[],uint8_t prev_states[], uint8_t size)
-//{
-//    bool_t isDiff = FALSE;
-//    for(int i = 0 ; i<size;i++)
-//    {
-//        if(states[i]!=prev_states[i])
-//        {
-//            isDiff = TRUE;
-//            prev_states[i] = states[i];
-//        }
-//    }
-//    if(isDiff)
-//    {
-//        LCD1602_CMD (lcd,CMD_CLEAR_DISPLAY_RETURN_HOME);
-//        for(int i = 0 ; i<size;i++)
-//        {
-//            LCD1602_INT (lcd,states[i]);
-//            LCD1602_STR (lcd,",");
-//        }
-//    }
-//}
-//
-//int main()
-//{
-//    lcd1602_t lcd_1;
-//    flex_t flexs[5];
-//    glove_t glove;
-//    uint8_t states[5]={FLEX_STATE_NULL,FLEX_STATE_NULL,FLEX_STATE_NULL,FLEX_STATE_NULL,FLEX_STATE_NULL};;
-//    uint8_t prev_states[5]={FLEX_STATE_NULL,FLEX_STATE_NULL,FLEX_STATE_NULL,FLEX_STATE_NULL,FLEX_STATE_NULL};
-//    
-//    
-//    FLEX_INIT (flexs+0,43500.0f,43000.0f,A0);
-//    FLEX_INIT (flexs+1,82000.0f,80000.0f,A1);
-//    FLEX_INIT (flexs+2,53300.0f,52500.0f,A2);
-//    FLEX_INIT (flexs+3,57500.0f,56500.0f,A3);
-//    FLEX_INIT (flexs+4,61500.0f,60500.0f,A4);
-//    GLOVE_INIT (&glove,flexs,5);
-//    
-//    LCD1602_INIT (&lcd_1,A7,A6,A5,A4,B1,B2,FALSE,FALSE,FALSE);
-//    
-//    sei();
-//    
-//    LCD1602_CMD (&lcd_1,CMD_CLEAR_DISPLAY_RETURN_HOME);
-//    while(1)
-//    {
-//        SET_PORTA_DIR (INPUT);// to handle that kit has A4 for LCD and ADC
-//        _delay_ms(5);
-//        GLOVE_SAMPLE (&glove);
-//        GLOVE_GET_STATES (&glove,states,5);
-//        SET_PORTA_DIR (OUTPUT);// to handle that kit has A4 for LCD and ADC
-//        _delay_ms(5);
-//        updateLCD(&lcd_1,states,prev_states,5);
-//        _delay_ms (10);
-//    }
-//    
-//    return EXIT_SUCCESS;
-//}

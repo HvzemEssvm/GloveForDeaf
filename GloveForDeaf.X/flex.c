@@ -12,8 +12,10 @@ void FLEX_SAMPLE(flex_t* FLEX)
 {
     ADC_CHANGE_CHANNEL (FLEX->PORT_PIN_ADC);
     ADC_MANUAL_SAMPLE ();
+    ADC_READ ();
+    ADC_MANUAL_SAMPLE ();
     float val = (((float)ADC_READ())/1023.0f)*5;
-    val= (47000)/(5/val - 1);
+    val = 47000.0f / (5.0f/val - 1.0f);
     if(val<=FLEX->RES_OPEN)
     {
         FLEX->STATE = FLEX_STATE_OPEN;
