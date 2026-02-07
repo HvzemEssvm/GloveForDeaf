@@ -17,49 +17,49 @@ uint16_t addressHasher(int states[5])
 {
     uint16_t address = 0;
     int weight = 1;
-    for (int i = 4; i >= 0; i--) {
+    for (int i = 3; i >= 0; i--) {
         int base3_digit = states[i] - 1;
         address += base3_digit * weight;
         weight *= 3;
     }
-    return (address*50)%2048;
+    return (address*50)*2048;
 }
 
 void eepromWriter()
 {
     EEPROM_ClearALL();
     EEPROM_APPEND_CUSTOM_MEM ("Awesome!",
-                              addressHasher ((int[]){FLEX_STATE_CLOSED,FLEX_STATE_OPEN,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED,FLEX_STATE_OPEN}));
+                              addressHasher ((int[]){FLEX_STATE_CLOSED,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED,FLEX_STATE_OPEN}));
     EEPROM_APPEND_CUSTOM_MEM ("I Love U",
-                              addressHasher ((int[]){FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED,FLEX_STATE_OPEN}));
+                              addressHasher ((int[]){FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED}));
     EEPROM_APPEND_CUSTOM_MEM ("I really love U",
-                              addressHasher ((int[]){FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_CLOSED,FLEX_STATE_OPEN}));
+                              addressHasher ((int[]){FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_CLOSED}));
     EEPROM_APPEND_CUSTOM_MEM ("I watch U",
-                              addressHasher ((int[]){FLEX_STATE_CLOSED,FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED}));
+                              addressHasher ((int[]){FLEX_STATE_CLOSED,FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_CLOSED}));
     EEPROM_APPEND_CUSTOM_MEM ("You",
-                              addressHasher ((int[]){FLEX_STATE_CLOSED,FLEX_STATE_OPEN,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED}));
+                              addressHasher ((int[]){FLEX_STATE_CLOSED,FLEX_STATE_OPEN,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED}));
     EEPROM_APPEND_CUSTOM_MEM ("Good job!",
-                              addressHasher ((int[]){FLEX_STATE_OPEN,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED}));
+                              addressHasher ((int[]){FLEX_STATE_OPEN,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED}));
     EEPROM_APPEND_CUSTOM_MEM ("Question",
-                              addressHasher ((int[]){FLEX_STATE_CLOSED,FLEX_STATE_HALF,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED}));
+                              addressHasher ((int[]){FLEX_STATE_CLOSED,FLEX_STATE_HALF,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED}));
     EEPROM_APPEND_CUSTOM_MEM ("I agree",
-                              addressHasher ((int[]){FLEX_STATE_CLOSED,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED}));
+                              addressHasher ((int[]){FLEX_STATE_CLOSED,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED}));
     EEPROM_APPEND_CUSTOM_MEM ("Quote",
-                              addressHasher ((int[]){FLEX_STATE_CLOSED,FLEX_STATE_HALF,FLEX_STATE_HALF,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED}));
+                              addressHasher ((int[]){FLEX_STATE_CLOSED,FLEX_STATE_HALF,FLEX_STATE_HALF,FLEX_STATE_CLOSED}));//msh shaghal
     EEPROM_APPEND_CUSTOM_MEM ("No",
-                              addressHasher ((int[]){FLEX_STATE_HALF,FLEX_STATE_HALF,FLEX_STATE_HALF,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED}));
+                              addressHasher ((int[]){FLEX_STATE_HALF,FLEX_STATE_HALF,FLEX_STATE_HALF,FLEX_STATE_CLOSED}));//msh shaghal
     EEPROM_APPEND_CUSTOM_MEM ("Made me laugh",
-                              addressHasher ((int[]){FLEX_STATE_HALF,FLEX_STATE_HALF,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED}));
+                              addressHasher ((int[]){FLEX_STATE_HALF,FLEX_STATE_HALF,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED}));
     EEPROM_APPEND_CUSTOM_MEM ("Hello",
-                              addressHasher ((int[]){FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_OPEN}));
+                              addressHasher ((int[]){FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_OPEN}));
     EEPROM_APPEND_CUSTOM_MEM ("Not sure",
-                              addressHasher ((int[]){FLEX_STATE_OPEN,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED,FLEX_STATE_OPEN}));
+                              addressHasher ((int[]){FLEX_STATE_OPEN,FLEX_STATE_CLOSED,FLEX_STATE_OPEN,FLEX_STATE_CLOSED}));
     EEPROM_APPEND_CUSTOM_MEM ("I am fine",
-                              addressHasher ((int[]){FLEX_STATE_HALF,FLEX_STATE_HALF,FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_OPEN}));
+                              addressHasher ((int[]){FLEX_STATE_HALF,FLEX_STATE_HALF,FLEX_STATE_OPEN,FLEX_STATE_OPEN}));
     EEPROM_APPEND_CUSTOM_MEM ("Thanks",
-                              addressHasher ((int[]){FLEX_STATE_CLOSED,FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_OPEN}));
-    EEPROM_APPEND_CUSTOM_MEM ("Thanks",
-                              addressHasher ((int[]){FLEX_STATE_HALF,FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_OPEN}));
+                              addressHasher ((int[]){FLEX_STATE_CLOSED,FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_OPEN}));
+    EEPROM_APPEND_CUSTOM_MEM ("Bye",
+                              addressHasher ((int[]){FLEX_STATE_HALF,FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_OPEN}));
 }   
 
 void eepromReader(int states[5],char buffer[],int bufferSize)
@@ -98,19 +98,13 @@ void updateLCD(lcd1602_t* lcd,int states[],int prev_states[], uint8_t size)
 
 void calib_flex(lcd1602_t* lcd, uint8_t port_pins_adc[], float RES_OPEN[],float RES_CLOSED[],int size)
 {
-    SET_PIN_DIR (A4,OUTPUT);// to handle that kit has A4 for LCD and ADC
-    _delay_ms(20);
-    
     LCD1602_CMD (lcd,CMD_CLEAR_DISPLAY_RETURN_HOME);
     LCD1602_STR (lcd,"Calibrating...");
     _delay_ms(2000);
     LCD1602_CMD (lcd,CMD_CLEAR_DISPLAY_RETURN_HOME);
-    LCD1602_STR (lcd,"Open your hand widely");
+    LCD1602_STR (lcd,"Open Hand Widely");
     _delay_ms(2000);
     
-    SET_PIN (A4,LOW);
-    SET_PIN_DIR (A4,INPUT);// to handle that kit has A4 for LCD and ADC
-    _delay_ms(20);
     for(int i=0;i<size;i++)
     {
         ADC_CHANGE_CHANNEL (port_pins_adc[i]);
@@ -122,15 +116,10 @@ void calib_flex(lcd1602_t* lcd, uint8_t port_pins_adc[], float RES_OPEN[],float 
         RES_OPEN[i] = val;
     }
     
-    SET_PIN_DIR (A4,OUTPUT);// to handle that kit has A4 for LCD and ADC
-    _delay_ms(20);
     LCD1602_CMD (lcd,CMD_CLEAR_DISPLAY_RETURN_HOME);
-    LCD1602_STR (lcd,"Close your hand firmly");
+    LCD1602_STR (lcd,"Close Hand Firmly");
     _delay_ms(2000);
     
-    SET_PIN (A4,LOW);
-    SET_PIN_DIR (A4,INPUT);// to handle that kit has A4 for LCD and ADC
-    _delay_ms(20);
     for(int i=0;i<size;i++)
     {
         ADC_CHANGE_CHANNEL (port_pins_adc[i]);
@@ -142,9 +131,6 @@ void calib_flex(lcd1602_t* lcd, uint8_t port_pins_adc[], float RES_OPEN[],float 
         RES_CLOSED[i] = val;
     }
     
-    SET_PIN_DIR (A4,OUTPUT);// to handle that kit has A4 for LCD and ADC
-    _delay_ms(20);
-    
     LCD1602_CMD (lcd,CMD_CLEAR_DISPLAY_RETURN_HOME);
     LCD1602_STR (lcd,"Finished calibration");
     _delay_ms(2000);
@@ -154,28 +140,29 @@ void calib_flex(lcd1602_t* lcd, uint8_t port_pins_adc[], float RES_OPEN[],float 
 int main()
 {
     lcd1602_t lcd_1;
-    flex_t flexs[5];
+    flex_t flexs[4];
     glove_t glove;
-    int states[5]={FLEX_STATE_NULL};
-    int prev_states[5]={FLEX_STATE_NULL};
-    float RES_OPEN[5];
-    float RES_CLOSED[5];
-    uint8_t port_pins_adc[5] = {A0,A1,A2,A3,A4};
+    int states[4]={FLEX_STATE_NULL};
+    int prev_states[4]={FLEX_STATE_NULL};
+    float RES_OPEN[4];
+    float RES_CLOSED[4];
+    uint8_t port_pins_adc[4] = {A0,A1,A2,A3};
+    ADC_INIT_POLL(VREF_AVCC,0,ADC_PS_128,FALSE);
     LCD1602_INIT (&lcd_1,A7,A6,A5,A4,B1,B2,FALSE,FALSE,FALSE);
     _delay_ms(10);
     
-    calib_flex(&lcd_1,port_pins_adc,RES_OPEN,RES_CLOSED,5);
+    calib_flex(&lcd_1,port_pins_adc,RES_OPEN,RES_CLOSED,4);
     
-    for(int i = 0; i<5;i++)
+    for(int i = 0; i<4;i++)
     {
-        LCD1602_CMD (&lcd_1,CMD_CLEAR_DISPLAY_RETURN_HOME);
-        LCD1602_FLOAT (&lcd_1,RES_OPEN[i]);
-        LCD1602_STR (&lcd_1,",");
-        LCD1602_FLOAT (&lcd_1,RES_CLOSED[i]);
-        _delay_ms(2000);
+//        LCD1602_CMD (&lcd_1,CMD_CLEAR_DISPLAY_RETURN_HOME);
+//        LCD1602_FLOAT (&lcd_1,RES_OPEN[i]);
+//        LCD1602_STR (&lcd_1,",");
+//        LCD1602_FLOAT (&lcd_1,RES_CLOSED[i]);
+//        _delay_ms(2000);
         FLEX_INIT (flexs+i,RES_CLOSED[i],RES_OPEN[i],port_pins_adc[i]); 
     }
-    GLOVE_INIT (&glove,flexs,5);
+    GLOVE_INIT (&glove,flexs,4);
     EEPROM_INIT ();    
     _delay_ms (50);
     eepromWriter ();
@@ -183,15 +170,10 @@ int main()
     LCD1602_CMD (&lcd_1,CMD_CLEAR_DISPLAY_RETURN_HOME);
     while(1)
     {
-        SET_PIN (A4,LOW);
-        SET_PIN_DIR (A4,INPUT);// to handle that kit has A4 for LCD and ADC
-        _delay_ms(20);
         GLOVE_SAMPLE (&glove);
-        GLOVE_GET_STATES (&glove,states,5);
+        GLOVE_GET_STATES (&glove,states,4);
         
-        SET_PIN_DIR (A4,OUTPUT);// to handle that kit has A4 for LCD and ADC
-        _delay_ms(20); 
-        updateLCD(&lcd_1,states,prev_states,5);
+        updateLCD(&lcd_1,states,prev_states,4);
         _delay_ms (20);
     }
     

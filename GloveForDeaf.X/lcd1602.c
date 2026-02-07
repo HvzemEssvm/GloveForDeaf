@@ -143,7 +143,7 @@ void LCD1602_CHAR(const lcd1602_t* LCD, char DATA)
 #endif
 }
 
-void LCD1602_STR(const lcd1602_t* LCD, char str[])
+void LCD1602_STR(const lcd1602_t* LCD, const char str[])
 {
     for(int i =0;str[i]!='\0';i++)
     {

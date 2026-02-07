@@ -23,7 +23,7 @@ void EEPROM_ReadString(uint16_t startAddr, char buffer[],unsigned int bufferSize
 
 void EEPROM_ClearALL();
 uint16_t EEPROM_APPEND(char data[]);
-uint16_t EEPROM_APPEND_CUSTOM_MEM(char data[],uint16_t StartAddress);
+uint16_t EEPROM_APPEND_CUSTOM_MEM(const char data[],uint16_t StartAddress);
 void EEPROM_INIT();
 void EEPROM_WriteByte(uint16_t MemoryAddress, char Data);
 void EEPROM_WritePage(uint16_t MemoryAddress, char Data[],uint8_t length);

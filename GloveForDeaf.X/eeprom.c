@@ -62,7 +62,7 @@ uint16_t EEPROM_APPEND(char data[]){
    return EEPROM_APPEND_CUSTOM_MEM(data,MemoryAddress);
 }
 
-uint16_t EEPROM_APPEND_CUSTOM_MEM(char data[],uint16_t startAddress){
+uint16_t EEPROM_APPEND_CUSTOM_MEM(const char data[],uint16_t startAddress){
     
     uint16_t len = 0;
     while(data[len] != 0) {
@@ -75,6 +75,8 @@ uint16_t EEPROM_APPEND_CUSTOM_MEM(char data[],uint16_t startAddress){
     uint8_t length;
     uint8_t remaining;
    
+    uint8_t tempBuffer[16];
+    
     while(bytesWritten < len){
         position_in_page = startAddress % 16;
         empty_in_page = 16 - position_in_page;
@@ -85,7 +87,11 @@ uint16_t EEPROM_APPEND_CUSTOM_MEM(char data[],uint16_t startAddress){
         else{
             length = empty_in_page;
         }
-        EEPROM_WritePage(startAddress,data+bytesWritten,length); 
+        for(uint8_t i = 0; i < length; i++) {
+            tempBuffer[i] = data[bytesWritten + i];
+        }
+        
+        EEPROM_WritePage(startAddress,tempBuffer,length); 
         startAddress += length;
         bytesWritten += length;
         
