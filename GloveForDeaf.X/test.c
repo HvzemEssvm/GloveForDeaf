@@ -34,7 +34,7 @@ uint16_t addressHasher(int states[4])
         address += states[i] * weight;
         weight *= 3;
     }
-   return address * 50;
+   return address * 60;
 }
 
 void eepromWriter()
@@ -115,7 +115,7 @@ void calib_flex(lcd1602_t* lcd, uint8_t port_pins_adc[], float RES_OPEN[],float 
     _delay_ms(500);
     LCD1602_CMD (lcd,CMD_CLEAR_DISPLAY_RETURN_HOME);
     LCD1602_STR (lcd,"Open Hand Widely");
-    _delay_ms(500);
+    _delay_ms(5000);
     
     for(int i=0;i<size;i++)
     {
@@ -130,7 +130,7 @@ void calib_flex(lcd1602_t* lcd, uint8_t port_pins_adc[], float RES_OPEN[],float 
     
     LCD1602_CMD (lcd,CMD_CLEAR_DISPLAY_RETURN_HOME);
     LCD1602_STR (lcd,"Close Hand Firmly");
-    _delay_ms(2000);
+    _delay_ms(5000);
     
     for(int i=0;i<size;i++)
     {

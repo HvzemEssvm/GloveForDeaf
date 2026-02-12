@@ -6,6 +6,7 @@ void FLEX_INIT(flex_t* FLEX,float RES_CLOSED,float RES_OPEN,uint8_t PORT_PIN_ADC
     FLEX->RES_CLOSED = RES_CLOSED;
     FLEX->RES_OPEN = RES_OPEN;
     FLEX->PORT_PIN_ADC = PORT_PIN_ADC;
+    
 }
 
 void FLEX_SAMPLE(flex_t* FLEX)
@@ -16,16 +17,31 @@ void FLEX_SAMPLE(flex_t* FLEX)
     ADC_MANUAL_SAMPLE ();
     float val = (((float)ADC_READ())/1023.0f)*5;
     val = 47000.0f / (5.0f/val - 1.0f);
-    if(val<=FLEX->RES_OPEN)
+//    if(val<=FLEX->RES_OPEN)
+//    {
+//        FLEX->STATE = FLEX_STATE_OPEN;
+//    }else if(val<=FLEX->RES_CLOSED)
+//    {
+//        FLEX->STATE = FLEX_STATE_HALF;
+//    }
+//    else
+//    {
+//        FLEX->STATE = FLEX_STATE_CLOSED;
+//    }
+    float range = FLEX->RES_CLOSED - FLEX->RES_OPEN;
+    float open_range = FLEX->RES_OPEN + (range*0.4);
+    float close_range = FLEX->RES_CLOSED - (range*0.4);
+    if(val<=open_range)
     {
         FLEX->STATE = FLEX_STATE_OPEN;
-    }else if(val<=FLEX->RES_CLOSED)
+    }
+    else if(val>=close_range)
     {
-        FLEX->STATE = FLEX_STATE_HALF;
+        FLEX->STATE = FLEX_STATE_CLOSED;
     }
     else
     {
-        FLEX->STATE = FLEX_STATE_CLOSED;
+        FLEX->STATE = FLEX_STATE_HALF;
     }
 }
 
