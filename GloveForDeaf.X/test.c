@@ -13,7 +13,7 @@
 #include "glove.h"
 #include "eeprom.h"
 
-uint16_t addressHasher(int states[5])
+/*uint16_t addressHasher(int states[5])
 {
     uint16_t address = 0;
     int weight = 1;
@@ -23,11 +23,23 @@ uint16_t addressHasher(int states[5])
         weight *= 3;
     }
     return (address*50)*2048;
+}*/
+
+uint16_t addressHasher(int states[4])
+{
+    uint16_t address = 0;
+    uint16_t weight = 1;
+
+    for (int i = 3; i >= 0; i--) {
+        address += states[i] * weight;
+        weight *= 3;
+    }
+   return address * 50;
 }
 
 void eepromWriter()
 {
-    EEPROM_ClearALL();
+    //EEPROM_ClearALL();
     EEPROM_APPEND_CUSTOM_MEM ("Awesome!",
                               addressHasher ((int[]){FLEX_STATE_CLOSED,FLEX_STATE_CLOSED,FLEX_STATE_CLOSED,FLEX_STATE_OPEN}));
     EEPROM_APPEND_CUSTOM_MEM ("I Love U",
@@ -100,10 +112,10 @@ void calib_flex(lcd1602_t* lcd, uint8_t port_pins_adc[], float RES_OPEN[],float 
 {
     LCD1602_CMD (lcd,CMD_CLEAR_DISPLAY_RETURN_HOME);
     LCD1602_STR (lcd,"Calibrating...");
-    _delay_ms(2000);
+    _delay_ms(500);
     LCD1602_CMD (lcd,CMD_CLEAR_DISPLAY_RETURN_HOME);
     LCD1602_STR (lcd,"Open Hand Widely");
-    _delay_ms(2000);
+    _delay_ms(500);
     
     for(int i=0;i<size;i++)
     {

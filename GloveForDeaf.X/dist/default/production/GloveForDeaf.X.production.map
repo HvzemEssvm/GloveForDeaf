@@ -163,7 +163,7 @@ Discarded input sections
                 0x0000000000000000        0x8 build/default/production/TIMER.o
  .text.TIMER0_CLEAR_COMPARE_MATCH_FLAG
                 0x0000000000000000        0x8 build/default/production/TIMER.o
- .debug_info    0x0000000000000000      0x47c build/default/production/TIMER.o
+ .debug_info    0x0000000000000000      0x46e build/default/production/TIMER.o
  .debug_abbrev  0x0000000000000000       0xca build/default/production/TIMER.o
  .debug_loc     0x0000000000000000       0xb9 build/default/production/TIMER.o
  .debug_aranges
@@ -189,7 +189,7 @@ Discarded input sections
                 0x0000000000000000       0x12 build/default/production/buzzer.o
  .text.BUZZER_BLINK
                 0x0000000000000000      0x21e build/default/production/buzzer.o
- .debug_info    0x0000000000000000      0x68f build/default/production/buzzer.o
+ .debug_info    0x0000000000000000      0x681 build/default/production/buzzer.o
  .debug_abbrev  0x0000000000000000      0x1d5 build/default/production/buzzer.o
  .debug_loc     0x0000000000000000      0x41e build/default/production/buzzer.o
  .debug_aranges
@@ -212,6 +212,8 @@ Discarded input sections
                 0x0000000000000000       0x1e build/default/production/eeprom.o
  .text.EEPROM_Save_Address_Of_Sent_To_Block1
                 0x0000000000000000       0x2c build/default/production/eeprom.o
+ .text.EEPROM_ClearALL
+                0x0000000000000000       0x5c build/default/production/eeprom.o
  .text.EEPROM_APPEND
                 0x0000000000000000        0xe build/default/production/eeprom.o
  .text.EEPROM_ReadByte
@@ -884,18 +886,18 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x0000000000000000     0x4f4e
+.debug_info     0x0000000000000000     0x4e99
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x0000000000000000      0x4e6 C:/Program Files/Microchip/xc8/v2.32/dfp/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
- .debug_info    0x00000000000004e6      0xb6f build/default/production/DIO.o
- .debug_info    0x0000000000001055      0xc5a build/default/production/lcd1602.o
- .debug_info    0x0000000000001caf      0x36e build/default/production/INTERRUPT.o
- .debug_info    0x000000000000201d      0x59a build/default/production/ADC.o
- .debug_info    0x00000000000025b7     0x12d5 build/default/production/test.o
- .debug_info    0x000000000000388c      0x3f7 build/default/production/flex.o
- .debug_info    0x0000000000003c83      0x429 build/default/production/glove.o
- .debug_info    0x00000000000040ac      0xb8c build/default/production/eeprom.o
- .debug_info    0x0000000000004c38      0x316 build/default/production/TWI.o
+ .debug_info    0x00000000000004e6      0xb61 build/default/production/DIO.o
+ .debug_info    0x0000000000001047      0xc4c build/default/production/lcd1602.o
+ .debug_info    0x0000000000001c93      0x360 build/default/production/INTERRUPT.o
+ .debug_info    0x0000000000001ff3      0x58c build/default/production/ADC.o
+ .debug_info    0x000000000000257f     0x1290 build/default/production/test.o
+ .debug_info    0x000000000000380f      0x3e9 build/default/production/flex.o
+ .debug_info    0x0000000000003bf8      0x41b build/default/production/glove.o
+ .debug_info    0x0000000000004013      0xb7e build/default/production/eeprom.o
+ .debug_info    0x0000000000004b91      0x308 build/default/production/TWI.o
 
 .debug_abbrev   0x0000000000000000     0x1137
  *(.debug_abbrev)
@@ -910,18 +912,18 @@ END GROUP
  .debug_abbrev  0x0000000000000edf      0x1cf build/default/production/eeprom.o
  .debug_abbrev  0x00000000000010ae       0x89 build/default/production/TWI.o
 
-.debug_line     0x0000000000000000     0x188a
+.debug_line     0x0000000000000000     0x1884
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x0000000000000000      0x119 C:/Program Files/Microchip/xc8/v2.32/dfp/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
  .debug_line    0x0000000000000119      0x427 build/default/production/DIO.o
  .debug_line    0x0000000000000540      0x32c build/default/production/lcd1602.o
  .debug_line    0x000000000000086c      0x1cd build/default/production/INTERRUPT.o
  .debug_line    0x0000000000000a39      0x232 build/default/production/ADC.o
- .debug_line    0x0000000000000c6b      0x4df build/default/production/test.o
- .debug_line    0x000000000000114a      0x121 build/default/production/flex.o
- .debug_line    0x000000000000126b      0x10f build/default/production/glove.o
- .debug_line    0x000000000000137a      0x3a0 build/default/production/eeprom.o
- .debug_line    0x000000000000171a      0x170 build/default/production/TWI.o
+ .debug_line    0x0000000000000c6b      0x4d9 build/default/production/test.o
+ .debug_line    0x0000000000001144      0x121 build/default/production/flex.o
+ .debug_line    0x0000000000001265      0x10f build/default/production/glove.o
+ .debug_line    0x0000000000001374      0x3a0 build/default/production/eeprom.o
+ .debug_line    0x0000000000001714      0x170 build/default/production/TWI.o
 
 .debug_frame    0x0000000000000000      0xb08
  *(.debug_frame)
@@ -935,30 +937,30 @@ END GROUP
  .debug_frame   0x00000000000008ac      0x1d8 build/default/production/eeprom.o
  .debug_frame   0x0000000000000a84       0x84 build/default/production/TWI.o
 
-.debug_str      0x0000000000000000      0x406
+.debug_str      0x0000000000000000      0x3f6
  *(.debug_str)
  .debug_str     0x0000000000000000      0x196 C:/Program Files/Microchip/xc8/v2.32/dfp/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
  .debug_str     0x0000000000000196       0x1b build/default/production/DIO.o
  .debug_str     0x00000000000001b1       0x2b build/default/production/lcd1602.o
  .debug_str     0x00000000000001dc        0x0 build/default/production/INTERRUPT.o
  .debug_str     0x00000000000001dc       0x2f build/default/production/ADC.o
- .debug_str     0x000000000000020b      0x110 build/default/production/test.o
- .debug_str     0x000000000000031b       0x5d build/default/production/flex.o
- .debug_str     0x0000000000000378       0x1b build/default/production/glove.o
- .debug_str     0x0000000000000393       0x73 build/default/production/eeprom.o
- .debug_str     0x0000000000000406        0x0 build/default/production/TWI.o
+ .debug_str     0x000000000000020b      0x100 build/default/production/test.o
+ .debug_str     0x000000000000030b       0x5d build/default/production/flex.o
+ .debug_str     0x0000000000000368       0x1b build/default/production/glove.o
+ .debug_str     0x0000000000000383       0x73 build/default/production/eeprom.o
+ .debug_str     0x00000000000003f6        0x0 build/default/production/TWI.o
 
-.debug_loc      0x0000000000000000     0x2130
+.debug_loc      0x0000000000000000     0x2106
  *(.debug_loc)
  .debug_loc     0x0000000000000000      0x412 build/default/production/DIO.o
  .debug_loc     0x0000000000000412      0x703 build/default/production/lcd1602.o
  .debug_loc     0x0000000000000b15       0x89 build/default/production/INTERRUPT.o
  .debug_loc     0x0000000000000b9e      0x29d build/default/production/ADC.o
- .debug_loc     0x0000000000000e3b      0x82b build/default/production/test.o
- .debug_loc     0x0000000000001666      0x1b0 build/default/production/flex.o
- .debug_loc     0x0000000000001816      0x105 build/default/production/glove.o
- .debug_loc     0x000000000000191b      0x7bb build/default/production/eeprom.o
- .debug_loc     0x00000000000020d6       0x5a build/default/production/TWI.o
+ .debug_loc     0x0000000000000e3b      0x801 build/default/production/test.o
+ .debug_loc     0x000000000000163c      0x1b0 build/default/production/flex.o
+ .debug_loc     0x00000000000017ec      0x105 build/default/production/glove.o
+ .debug_loc     0x00000000000018f1      0x7bb build/default/production/eeprom.o
+ .debug_loc     0x00000000000020ac       0x5a build/default/production/TWI.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -1034,388 +1036,382 @@ LOAD data_init
                 0x00000000000000b4       0xce build/default/production/test.o
 
 .text.eepromWriter
-                0x0000000000000182      0x2ae
+                0x0000000000000182      0x2aa
  .text.eepromWriter
-                0x0000000000000182      0x2ae build/default/production/test.o
+                0x0000000000000182      0x2aa build/default/production/test.o
                 0x0000000000000182                eepromWriter
 
 .text.calib_flex
-                0x0000000000000430      0x212
+                0x000000000000042c      0x212
  .text.calib_flex
-                0x0000000000000430      0x212 build/default/production/test.o
-                0x0000000000000430                calib_flex
+                0x000000000000042c      0x212 build/default/production/test.o
+                0x000000000000042c                calib_flex
 
-.text.main      0x0000000000000642      0x18c
- .text.main     0x0000000000000642      0x18c build/default/production/test.o
-                0x0000000000000642                main
+.text.main      0x000000000000063e      0x18c
+ .text.main     0x000000000000063e      0x18c build/default/production/test.o
+                0x000000000000063e                main
 
-.text.SET_PIN   0x00000000000007ce      0x12a
- .text.SET_PIN  0x00000000000007ce      0x12a build/default/production/DIO.o
-                0x00000000000007ce                SET_PIN
+.text.SET_PIN   0x00000000000007ca      0x12a
+ .text.SET_PIN  0x00000000000007ca      0x12a build/default/production/DIO.o
+                0x00000000000007ca                SET_PIN
 
 .text.SET_PIN_DIR
-                0x00000000000008f8      0x12a
+                0x00000000000008f4      0x12a
  .text.SET_PIN_DIR
-                0x00000000000008f8      0x12a build/default/production/DIO.o
-                0x00000000000008f8                SET_PIN_DIR
+                0x00000000000008f4      0x12a build/default/production/DIO.o
+                0x00000000000008f4                SET_PIN_DIR
 
 .text.EEPROM_APPEND_CUSTOM_MEM
-                0x0000000000000a22      0x11a
+                0x0000000000000a1e      0x11a
  .text.EEPROM_APPEND_CUSTOM_MEM
-                0x0000000000000a22      0x11a build/default/production/eeprom.o
-                0x0000000000000a22                EEPROM_APPEND_CUSTOM_MEM
+                0x0000000000000a1e      0x11a build/default/production/eeprom.o
+                0x0000000000000a1e                EEPROM_APPEND_CUSTOM_MEM
 
 .text.avrlibc.fplib
-                0x0000000000000b3c       0xde
+                0x0000000000000b38       0xde
  .text.avrlibc.fplib
-                0x0000000000000b3c       0xde c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(divsf3x.o)
-                0x0000000000000b3c                __divsf3x
-                0x0000000000000b64                __divsf3_pse
+                0x0000000000000b38       0xde c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(divsf3x.o)
+                0x0000000000000b38                __divsf3x
+                0x0000000000000b60                __divsf3_pse
 
 .text.LCD1602_CMD
-                0x0000000000000c1a       0xd6
+                0x0000000000000c16       0xd6
  .text.LCD1602_CMD
-                0x0000000000000c1a       0xd6 build/default/production/lcd1602.o
-                0x0000000000000c1a                LCD1602_CMD
+                0x0000000000000c16       0xd6 build/default/production/lcd1602.o
+                0x0000000000000c16                LCD1602_CMD
 
 .text.LCD1602_INIT
-                0x0000000000000cf0       0xd6
+                0x0000000000000cec       0xd6
  .text.LCD1602_INIT
-                0x0000000000000cf0       0xd6 build/default/production/lcd1602.o
-                0x0000000000000cf0                LCD1602_INIT
+                0x0000000000000cec       0xd6 build/default/production/lcd1602.o
+                0x0000000000000cec                LCD1602_INIT
 
 .text.LCD1602_CHAR
-                0x0000000000000dc6       0xd6
+                0x0000000000000dc2       0xd6
  .text.LCD1602_CHAR
-                0x0000000000000dc6       0xd6 build/default/production/lcd1602.o
-                0x0000000000000dc6                LCD1602_CHAR
+                0x0000000000000dc2       0xd6 build/default/production/lcd1602.o
+                0x0000000000000dc2                LCD1602_CHAR
 
 .text.avrlibc.fplib
-                0x0000000000000e9c       0xd4
+                0x0000000000000e98       0xd4
  .text.avrlibc.fplib
-                0x0000000000000e9c       0xd4 c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(mulsf3x.o)
-                0x0000000000000e9c                __mulsf3x
-                0x0000000000000ec2                __mulsf3_pse
+                0x0000000000000e98       0xd4 c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(mulsf3x.o)
+                0x0000000000000e98                __mulsf3x
+                0x0000000000000ebe                __mulsf3_pse
 
 .text.avrlibc.fplib
-                0x0000000000000f70       0xce
+                0x0000000000000f6c       0xce
  .text.avrlibc.fplib
-                0x0000000000000f70       0xce c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(addsf3x.o)
-                0x0000000000000f70                __addsf3x
+                0x0000000000000f6c       0xce c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(addsf3x.o)
+                0x0000000000000f6c                __addsf3x
 
 .text.FLEX_SAMPLE
-                0x000000000000103e       0xc4
+                0x000000000000103a       0xc4
  .text.FLEX_SAMPLE
-                0x000000000000103e       0xc4 build/default/production/flex.o
-                0x000000000000103e                FLEX_SAMPLE
+                0x000000000000103a       0xc4 build/default/production/flex.o
+                0x000000000000103a                FLEX_SAMPLE
 
 .text.updateLCD
-                0x0000000000001102       0xb8
+                0x00000000000010fe       0xb8
  .text.updateLCD
-                0x0000000000001102       0xb8 build/default/production/test.o
-                0x0000000000001102                updateLCD
+                0x00000000000010fe       0xb8 build/default/production/test.o
+                0x00000000000010fe                updateLCD
 
 .text.eepromReader
-                0x00000000000011ba       0x90
+                0x00000000000011b6       0x90
  .text.eepromReader
-                0x00000000000011ba       0x90 build/default/production/test.o
-                0x00000000000011ba                eepromReader
+                0x00000000000011b6       0x90 build/default/production/test.o
+                0x00000000000011b6                eepromReader
 
 .text.avrlibc.fplib
-                0x000000000000124a       0x7a
+                0x0000000000001246       0x7a
  .text.avrlibc.fplib
-                0x000000000000124a       0x7a c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(floatsisf.o)
-                0x000000000000124a                __floatunsisf
-                0x000000000000124e                __floatsisf
+                0x0000000000001246       0x7a c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(floatsisf.o)
+                0x0000000000001246                __floatunsisf
+                0x000000000000124a                __floatsisf
 
 .text.GLOVE_GET_STATES
-                0x00000000000012c4       0x78
+                0x00000000000012c0       0x78
  .text.GLOVE_GET_STATES
-                0x00000000000012c4       0x78 build/default/production/glove.o
-                0x00000000000012c4                GLOVE_GET_STATES
+                0x00000000000012c0       0x78 build/default/production/glove.o
+                0x00000000000012c0                GLOVE_GET_STATES
 
 .text.FLEX_INIT
-                0x000000000000133c       0x5e
+                0x0000000000001338       0x5e
  .text.FLEX_INIT
-                0x000000000000133c       0x5e build/default/production/flex.o
-                0x000000000000133c                FLEX_INIT
-
-.text.EEPROM_ClearALL
-                0x000000000000139a       0x5c
- .text.EEPROM_ClearALL
-                0x000000000000139a       0x5c build/default/production/eeprom.o
-                0x000000000000139a                EEPROM_ClearALL
+                0x0000000000001338       0x5e build/default/production/flex.o
+                0x0000000000001338                FLEX_INIT
 
 .text.EEPROM_ReadString
-                0x00000000000013f6       0x56
+                0x0000000000001396       0x56
  .text.EEPROM_ReadString
-                0x00000000000013f6       0x56 build/default/production/eeprom.o
-                0x00000000000013f6                EEPROM_ReadString
+                0x0000000000001396       0x56 build/default/production/eeprom.o
+                0x0000000000001396                EEPROM_ReadString
 
 .text.LCD1602_STR
-                0x000000000000144c       0x52
+                0x00000000000013ec       0x52
  .text.LCD1602_STR
-                0x000000000000144c       0x52 build/default/production/lcd1602.o
-                0x000000000000144c                LCD1602_STR
+                0x00000000000013ec       0x52 build/default/production/lcd1602.o
+                0x00000000000013ec                LCD1602_STR
 
 .text.__vector_1
-                0x000000000000149e       0x52
+                0x000000000000143e       0x52
  .text.__vector_1
-                0x000000000000149e       0x52 build/default/production/INTERRUPT.o
-                0x000000000000149e                __vector_1
+                0x000000000000143e       0x52 build/default/production/INTERRUPT.o
+                0x000000000000143e                __vector_1
 
 .text.__vector_2
-                0x00000000000014f0       0x52
+                0x0000000000001490       0x52
  .text.__vector_2
-                0x00000000000014f0       0x52 build/default/production/INTERRUPT.o
-                0x00000000000014f0                __vector_2
+                0x0000000000001490       0x52 build/default/production/INTERRUPT.o
+                0x0000000000001490                __vector_2
 
 .text.__vector_3
-                0x0000000000001542       0x52
+                0x00000000000014e2       0x52
  .text.__vector_3
-                0x0000000000001542       0x52 build/default/production/INTERRUPT.o
-                0x0000000000001542                __vector_3
+                0x00000000000014e2       0x52 build/default/production/INTERRUPT.o
+                0x00000000000014e2                __vector_3
 
 .text.__vector_16
-                0x0000000000001594       0x52
+                0x0000000000001534       0x52
  .text.__vector_16
-                0x0000000000001594       0x52 build/default/production/ADC.o
-                0x0000000000001594                __vector_16
+                0x0000000000001534       0x52 build/default/production/ADC.o
+                0x0000000000001534                __vector_16
 
 .text.GLOVE_SAMPLE
-                0x00000000000015e6       0x50
+                0x0000000000001586       0x50
  .text.GLOVE_SAMPLE
-                0x00000000000015e6       0x50 build/default/production/glove.o
-                0x00000000000015e6                GLOVE_SAMPLE
+                0x0000000000001586       0x50 build/default/production/glove.o
+                0x0000000000001586                GLOVE_SAMPLE
 
 .text.GET_PORT_PIN_NUM
-                0x0000000000001636       0x4e
+                0x00000000000015d6       0x4e
  .text.GET_PORT_PIN_NUM
-                0x0000000000001636       0x4e build/default/production/DIO.o
+                0x00000000000015d6       0x4e build/default/production/DIO.o
 
 .text.EEPROM_WritePage
-                0x0000000000001684       0x4e
+                0x0000000000001624       0x4e
  .text.EEPROM_WritePage
-                0x0000000000001684       0x4e build/default/production/eeprom.o
-                0x0000000000001684                EEPROM_WritePage
+                0x0000000000001624       0x4e build/default/production/eeprom.o
+                0x0000000000001624                EEPROM_WritePage
+
+.text.avrlibc.fplib
+                0x0000000000001672       0x48
+ .text.avrlibc.fplib
+                0x0000000000001672       0x48 c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(fp_cmp.o)
+                0x0000000000001672                __fp_cmp
+
+.text.avrlibc.fplib
+                0x00000000000016ba       0x44
+ .text.avrlibc.fplib
+                0x00000000000016ba       0x44 c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(fp_split3.o)
+                0x00000000000016ba                __fp_split3
+                0x00000000000016ca                __fp_splitA
 
 .text.addressHasher
-                0x00000000000016d2       0x4c
+                0x00000000000016fe       0x42
  .text.addressHasher
-                0x00000000000016d2       0x4c build/default/production/test.o
-                0x00000000000016d2                addressHasher
-
-.text.avrlibc.fplib
-                0x000000000000171e       0x48
- .text.avrlibc.fplib
-                0x000000000000171e       0x48 c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(fp_cmp.o)
-                0x000000000000171e                __fp_cmp
-
-.text.avrlibc.fplib
-                0x0000000000001766       0x44
- .text.avrlibc.fplib
-                0x0000000000001766       0x44 c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(fp_split3.o)
-                0x0000000000001766                __fp_split3
-                0x0000000000001776                __fp_splitA
+                0x00000000000016fe       0x42 build/default/production/test.o
+                0x00000000000016fe                addressHasher
 
 .text.LCD1602_EN
-                0x00000000000017aa       0x3e
+                0x0000000000001740       0x3e
  .text.LCD1602_EN
-                0x00000000000017aa       0x3e build/default/production/lcd1602.o
-                0x00000000000017aa                LCD1602_EN
+                0x0000000000001740       0x3e build/default/production/lcd1602.o
+                0x0000000000001740                LCD1602_EN
 
-.text.avrlibc   0x00000000000017e8       0x32
- .text.avrlibc  0x00000000000017e8       0x32 c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libc.a(memcpy_M.o)
-                0x00000000000017e8                memcpy
+.text.avrlibc   0x000000000000177e       0x32
+ .text.avrlibc  0x000000000000177e       0x32 c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libc.a(memcpy_M.o)
+                0x000000000000177e                memcpy
 
-.text.avrlibc   0x000000000000181a       0x2c
- .text.avrlibc  0x000000000000181a       0x2c c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libc.a(strlen_M.o)
-                0x000000000000181a                strlen
+.text.avrlibc   0x00000000000017b0       0x2c
+ .text.avrlibc  0x00000000000017b0       0x2c c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libc.a(strlen_M.o)
+                0x00000000000017b0                strlen
 
 .text.EEPROM_PrepareAddressWrite
-                0x0000000000001846       0x26
+                0x00000000000017dc       0x26
  .text.EEPROM_PrepareAddressWrite
-                0x0000000000001846       0x26 build/default/production/eeprom.o
+                0x00000000000017dc       0x26 build/default/production/eeprom.o
 
 .text.avrlibc.fplib
-                0x000000000000186c       0x22
+                0x0000000000001802       0x22
  .text.avrlibc.fplib
-                0x000000000000186c       0x22 c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(fp_round.o)
-                0x000000000000186c                __fp_round
+                0x0000000000001802       0x22 c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(fp_round.o)
+                0x0000000000001802                __fp_round
 
-.text.avrlibc   0x000000000000188e       0x1e
- .text.avrlibc  0x000000000000188e       0x1e c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libc.a(strcpy_M.o)
-                0x000000000000188e                strcpy
+.text.avrlibc   0x0000000000001824       0x1e
+ .text.avrlibc  0x0000000000001824       0x1e c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libc.a(strcpy_M.o)
+                0x0000000000001824                strcpy
 
-.text.ADC_READ  0x00000000000018ac       0x1c
+.text.ADC_READ  0x0000000000001842       0x1c
  .text.ADC_READ
-                0x00000000000018ac       0x1c build/default/production/ADC.o
-                0x00000000000018ac                ADC_READ
+                0x0000000000001842       0x1c build/default/production/ADC.o
+                0x0000000000001842                ADC_READ
 
 .text.ADC_ADMUX_CONFIG
-                0x00000000000018c8       0x1a
+                0x000000000000185e       0x1a
  .text.ADC_ADMUX_CONFIG
-                0x00000000000018c8       0x1a build/default/production/ADC.o
+                0x000000000000185e       0x1a build/default/production/ADC.o
 
 .text.ADC_INIT_POLL
-                0x00000000000018e2       0x1a
+                0x0000000000001878       0x1a
  .text.ADC_INIT_POLL
-                0x00000000000018e2       0x1a build/default/production/ADC.o
-                0x00000000000018e2                ADC_INIT_POLL
+                0x0000000000001878       0x1a build/default/production/ADC.o
+                0x0000000000001878                ADC_INIT_POLL
 
 .text.FLEX_GET_STATE
-                0x00000000000018fc       0x14
+                0x0000000000001892       0x14
  .text.FLEX_GET_STATE
-                0x00000000000018fc       0x14 build/default/production/flex.o
-                0x00000000000018fc                FLEX_GET_STATE
+                0x0000000000001892       0x14 build/default/production/flex.o
+                0x0000000000001892                FLEX_GET_STATE
 
-.text.libgcc    0x0000000000001910       0x10
- .text.libgcc   0x0000000000001910       0x10 c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/avr5/memx-const\libgcc.a(_xload_2.o)
-                0x0000000000001910                __xload_2
+.text.libgcc    0x00000000000018a6       0x10
+ .text.libgcc   0x00000000000018a6       0x10 c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/avr5/memx-const\libgcc.a(_xload_2.o)
+                0x00000000000018a6                __xload_2
 
 .text.ADC_CHANGE_CHANNEL
-                0x0000000000001920        0xe
+                0x00000000000018b6        0xe
  .text.ADC_CHANGE_CHANNEL
-                0x0000000000001920        0xe build/default/production/ADC.o
-                0x0000000000001920                ADC_CHANGE_CHANNEL
+                0x00000000000018b6        0xe build/default/production/ADC.o
+                0x00000000000018b6                ADC_CHANGE_CHANNEL
 
 .text.TWI_WriteAddress
-                0x000000000000192e        0xe
+                0x00000000000018c4        0xe
  .text.TWI_WriteAddress
-                0x000000000000192e        0xe build/default/production/TWI.o
-                0x000000000000192e                TWI_WriteAddress
+                0x00000000000018c4        0xe build/default/production/TWI.o
+                0x00000000000018c4                TWI_WriteAddress
 
 .text.TWI_Write
-                0x000000000000193c        0xe
+                0x00000000000018d2        0xe
  .text.TWI_Write
-                0x000000000000193c        0xe build/default/production/TWI.o
-                0x000000000000193c                TWI_Write
+                0x00000000000018d2        0xe build/default/production/TWI.o
+                0x00000000000018d2                TWI_Write
 
 .text.TWI_ReadACK
-                0x000000000000194a        0xe
+                0x00000000000018e0        0xe
  .text.TWI_ReadACK
-                0x000000000000194a        0xe build/default/production/TWI.o
-                0x000000000000194a                TWI_ReadACK
+                0x00000000000018e0        0xe build/default/production/TWI.o
+                0x00000000000018e0                TWI_ReadACK
 
 .text.TWI_ReadNACK
-                0x0000000000001958        0xe
+                0x00000000000018ee        0xe
  .text.TWI_ReadNACK
-                0x0000000000001958        0xe build/default/production/TWI.o
-                0x0000000000001958                TWI_ReadNACK
+                0x00000000000018ee        0xe build/default/production/TWI.o
+                0x00000000000018ee                TWI_ReadNACK
 
 .text.avrlibc.fplib
-                0x0000000000001966        0xe
+                0x00000000000018fc        0xe
  .text.avrlibc.fplib
-                0x0000000000001966        0xe c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(addsf3.o)
-                0x0000000000001966                __subsf3
-                0x0000000000001968                __addsf3
+                0x00000000000018fc        0xe c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(addsf3.o)
+                0x00000000000018fc                __subsf3
+                0x00000000000018fe                __addsf3
 
 .text.avrlibc.fplib
-                0x0000000000001974        0xe
+                0x000000000000190a        0xe
  .text.avrlibc.fplib
-                0x0000000000001974        0xe c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(fp_pscA.o)
-                0x0000000000001974                __fp_pscA
+                0x000000000000190a        0xe c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(fp_pscA.o)
+                0x000000000000190a                __fp_pscA
 
 .text.avrlibc.fplib
-                0x0000000000001982        0xe
+                0x0000000000001918        0xe
  .text.avrlibc.fplib
-                0x0000000000001982        0xe c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(fp_pscB.o)
-                0x0000000000001982                __fp_pscB
+                0x0000000000001918        0xe c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(fp_pscB.o)
+                0x0000000000001918                __fp_pscB
 
 .text.avrlibc.fplib
-                0x0000000000001990        0xe
+                0x0000000000001926        0xe
  .text.avrlibc.fplib
-                0x0000000000001990        0xe c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(fp_zero.o)
-                0x0000000000001990                __fp_zero
-                0x0000000000001992                __fp_szero
+                0x0000000000001926        0xe c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(fp_zero.o)
+                0x0000000000001926                __fp_zero
+                0x0000000000001928                __fp_szero
 
 .text.GLOVE_INIT
-                0x000000000000199e        0xc
+                0x0000000000001934        0xc
  .text.GLOVE_INIT
-                0x000000000000199e        0xc build/default/production/glove.o
-                0x000000000000199e                GLOVE_INIT
+                0x0000000000001934        0xc build/default/production/glove.o
+                0x0000000000001934                GLOVE_INIT
 
-.text.TWI_Init  0x00000000000019aa        0xc
+.text.TWI_Init  0x0000000000001940        0xc
  .text.TWI_Init
-                0x00000000000019aa        0xc build/default/production/TWI.o
-                0x00000000000019aa                TWI_Init
+                0x0000000000001940        0xc build/default/production/TWI.o
+                0x0000000000001940                TWI_Init
 
 .text.TWI_Start
-                0x00000000000019b6        0xc
+                0x000000000000194c        0xc
  .text.TWI_Start
-                0x00000000000019b6        0xc build/default/production/TWI.o
-                0x00000000000019b6                TWI_Start
+                0x000000000000194c        0xc build/default/production/TWI.o
+                0x000000000000194c                TWI_Start
 
 .text.avrlibc.fplib
-                0x00000000000019c2        0xc
+                0x0000000000001958        0xc
  .text.avrlibc.fplib
-                0x00000000000019c2        0xc c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(fp_inf.o)
-                0x00000000000019c2                __fp_inf
+                0x0000000000001958        0xc c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(fp_inf.o)
+                0x0000000000001958                __fp_inf
 
 .text.avrlibc.fplib
-                0x00000000000019ce        0xa
+                0x0000000000001964        0xa
  .text.avrlibc.fplib
-                0x00000000000019ce        0xa c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(cmpsf2.o)
-                0x00000000000019ce                __nesf2
-                0x00000000000019ce                __eqsf2
-                0x00000000000019ce                __cmpsf2
-                0x00000000000019ce                __ltsf2
-                0x00000000000019ce                __lesf2
+                0x0000000000001964        0xa c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(cmpsf2.o)
+                0x0000000000001964                __nesf2
+                0x0000000000001964                __eqsf2
+                0x0000000000001964                __cmpsf2
+                0x0000000000001964                __ltsf2
+                0x0000000000001964                __lesf2
 
 .text.ADC_MANUAL_SAMPLE
-                0x00000000000019d8        0x8
+                0x000000000000196e        0x8
  .text.ADC_MANUAL_SAMPLE
-                0x00000000000019d8        0x8 build/default/production/ADC.o
-                0x00000000000019d8                ADC_MANUAL_SAMPLE
+                0x000000000000196e        0x8 build/default/production/ADC.o
+                0x000000000000196e                ADC_MANUAL_SAMPLE
 
 .text.avrlibc.fplib
-                0x00000000000019e0        0x8
+                0x0000000000001976        0x8
  .text.avrlibc.fplib
-                0x00000000000019e0        0x8 c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(divsf3.o)
-                0x00000000000019e0                __divsf3
+                0x0000000000001976        0x8 c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(divsf3.o)
+                0x0000000000001976                __divsf3
 
 .text.avrlibc.fplib
-                0x00000000000019e8        0x8
+                0x000000000000197e        0x8
  .text.avrlibc.fplib
-                0x00000000000019e8        0x8 c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(mulsf3.o)
-                0x00000000000019e8                __mulsf3
+                0x000000000000197e        0x8 c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(mulsf3.o)
+                0x000000000000197e                __mulsf3
 
 .text.EEPROM_INIT
-                0x00000000000019f0        0x6
+                0x0000000000001986        0x6
  .text.EEPROM_INIT
-                0x00000000000019f0        0x6 build/default/production/eeprom.o
-                0x00000000000019f0                EEPROM_INIT
+                0x0000000000001986        0x6 build/default/production/eeprom.o
+                0x0000000000001986                EEPROM_INIT
 
-.text.TWI_Stop  0x00000000000019f6        0x6
+.text.TWI_Stop  0x000000000000198c        0x6
  .text.TWI_Stop
-                0x00000000000019f6        0x6 build/default/production/TWI.o
-                0x00000000000019f6                TWI_Stop
+                0x000000000000198c        0x6 build/default/production/TWI.o
+                0x000000000000198c                TWI_Stop
 
 .text.avrlibc.fplib
-                0x00000000000019fc        0x6
+                0x0000000000001992        0x6
  .text.avrlibc.fplib
-                0x00000000000019fc        0x6 c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(fp_nan.o)
-                0x00000000000019fc                __fp_nan
+                0x0000000000001992        0x6 c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(fp_nan.o)
+                0x0000000000001992                __fp_nan
 
-.text           0x0000000000001a02        0x4
- .text          0x0000000000001a02        0x4 C:/Program Files/Microchip/xc8/v2.32/dfp/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
-                0x0000000000001a02                __vector_12
-                0x0000000000001a02                __bad_interrupt
-                0x0000000000001a02                __vector_6
-                0x0000000000001a02                __vector_11
-                0x0000000000001a02                __vector_13
-                0x0000000000001a02                __vector_17
-                0x0000000000001a02                __vector_19
-                0x0000000000001a02                __vector_7
-                0x0000000000001a02                __vector_5
-                0x0000000000001a02                __vector_4
-                0x0000000000001a02                __vector_9
-                0x0000000000001a02                __vector_15
-                0x0000000000001a02                __vector_8
-                0x0000000000001a02                __vector_14
-                0x0000000000001a02                __vector_10
-                0x0000000000001a02                __vector_18
-                0x0000000000001a02                __vector_20
+.text           0x0000000000001998        0x4
+ .text          0x0000000000001998        0x4 C:/Program Files/Microchip/xc8/v2.32/dfp/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
+                0x0000000000001998                __vector_12
+                0x0000000000001998                __bad_interrupt
+                0x0000000000001998                __vector_6
+                0x0000000000001998                __vector_11
+                0x0000000000001998                __vector_13
+                0x0000000000001998                __vector_17
+                0x0000000000001998                __vector_19
+                0x0000000000001998                __vector_7
+                0x0000000000001998                __vector_5
+                0x0000000000001998                __vector_4
+                0x0000000000001998                __vector_9
+                0x0000000000001998                __vector_15
+                0x0000000000001998                __vector_8
+                0x0000000000001998                __vector_14
+                0x0000000000001998                __vector_10
+                0x0000000000001998                __vector_18
+                0x0000000000001998                __vector_20
 
-.rodata         0x0000000000800060       0x80 load address 0x0000000000001a06
+.rodata         0x0000000000800060       0x80 load address 0x000000000000199c
  .rodata        0x0000000000800060       0x80 build/default/production/test.o
