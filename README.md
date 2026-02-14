@@ -9,6 +9,7 @@
 
 - [How it works](#how-it-works)
 - [Simulation](#simulation)
+- [Real Life Testing](#real-life-testing)
 
 ---
 ##  Overview
@@ -62,4 +63,11 @@ This calculated address points directly to a pre-programmed phrase in the EEPROM
 ##  Simulation
 
 <img width="1361" height="752" alt="Screenshot (1129)" src="https://github.com/user-attachments/assets/b5963649-7c5e-4640-bb3b-98ba15be6a51" />
+
+---
+
+## Real Life Testing
+
+You can find the video logs for our tests in the Drive folder below:
+[View Testing Videos on Google Drive](https://drive.google.com/drive/folders/1uhcsOxtpnnFTdz06eqzfibd8JjsI1FU4)
 
