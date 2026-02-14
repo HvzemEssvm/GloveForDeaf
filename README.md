@@ -1,5 +1,6 @@
 
 # GloveForDeaf
+![project](https://github.com/user-attachments/assets/36d280a1-c900-40b7-803e-451a5c6976fe)
 
 
 ## Table of Contents
@@ -7,6 +8,7 @@
 - [Hardware Components](#hardware-components)
 
 - [How it works](#how-it-works)
+- [Simulation](#simulation)
 
 ---
 ##  Overview
@@ -51,8 +53,13 @@ Instead of simple binary (bent/straight), the system calculates dynamic margins 
 To translate the gesture, the system converts the array of 4 finger states into a unique memory address using a custom hashing algorithm. Treating the states as a Base-3 number system, the algorithm applies weights:
 
 $Address = \left( \sum_{i=0}^{3} State_i \times 3^{3-i} \right) \times 60$
+---
+
 
 This calculated address points directly to a pre-programmed phrase in the EEPROM (e.g., "I Love U", "Hello", "Good job!"). If the new state differs from the previous state, the phrase is fetched and displayed on the 16x2 LCD.
 
 ---
+##  Simulation
+
+<img width="1361" height="752" alt="Screenshot (1129)" src="https://github.com/user-attachments/assets/b5963649-7c5e-4640-bb3b-98ba15be6a51" />
 
