@@ -16,13 +16,13 @@
 
 typedef struct
 {
-  float RES_CLOSED;
-  float RES_OPEN;
+  uint16_t RES_CLOSED;
+  uint16_t RES_OPEN;
   uint8_t PORT_PIN_ADC;
   int STATE;
 }flex_t;
 
-void FLEX_INIT(flex_t* FLEX,float RES_CLOSED,float RES_OPEN,uint8_t PORT_PIN_ADC);
+void FLEX_INIT(flex_t* FLEX,uint16_t RES_CLOSED,uint16_t RES_OPEN,uint8_t PORT_PIN_ADC);
 
 void FLEX_SAMPLE(flex_t* FLEX);
 

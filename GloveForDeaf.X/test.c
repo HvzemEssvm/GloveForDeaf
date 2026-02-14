@@ -13,7 +13,7 @@
 #include "glove.h"
 #include "eeprom.h"
 
-/*uint16_t addressHasher(int states[5])
+uint16_t addressHasher(int states[5])
 {
     uint16_t address = 0;
     int weight = 1;
@@ -22,20 +22,20 @@
         address += base3_digit * weight;
         weight *= 3;
     }
-    return (address*50)*2048;
-}*/
-
-uint16_t addressHasher(int states[4])
-{
-    uint16_t address = 0;
-    uint16_t weight = 1;
-
-    for (int i = 3; i >= 0; i--) {
-        address += states[i] * weight;
-        weight *= 3;
-    }
-   return address * 60;
+    return address * 24;
 }
+
+//uint16_t addressHasher(int states[4])
+//{
+//    uint16_t address = 0;
+//    uint16_t weight = 1;
+//
+//    for (int i = 3; i >= 0; i--) {
+//        address += states[i] * weight;
+//        weight *= 3;
+//    }
+//   return address * 12;
+//}
 
 void eepromWriter()
 {
@@ -74,7 +74,7 @@ void eepromWriter()
                               addressHasher ((int[]){FLEX_STATE_HALF,FLEX_STATE_OPEN,FLEX_STATE_OPEN,FLEX_STATE_OPEN}));
 }   
 
-void eepromReader(int states[5],char buffer[],int bufferSize)
+void eepromReader(int states[4],char buffer[],int bufferSize)
 {
     char str[bufferSize];
     EEPROM_ReadString (addressHasher (states),str,bufferSize);
@@ -108,14 +108,14 @@ void updateLCD(lcd1602_t* lcd,int states[],int prev_states[], uint8_t size)
     }
 }
 
-void calib_flex(lcd1602_t* lcd, uint8_t port_pins_adc[], float RES_OPEN[],float RES_CLOSED[],int size)
+void calib_flex(lcd1602_t* lcd, uint8_t port_pins_adc[], uint16_t RES_OPEN[],uint16_t RES_CLOSED[],int size)
 {
     LCD1602_CMD (lcd,CMD_CLEAR_DISPLAY_RETURN_HOME);
     LCD1602_STR (lcd,"Calibrating...");
-    _delay_ms(500);
+    _delay_ms(50);
     LCD1602_CMD (lcd,CMD_CLEAR_DISPLAY_RETURN_HOME);
     LCD1602_STR (lcd,"Open Hand Widely");
-    _delay_ms(5000);
+    _delay_ms(500);
     
     for(int i=0;i<size;i++)
     {
@@ -123,14 +123,15 @@ void calib_flex(lcd1602_t* lcd, uint8_t port_pins_adc[], float RES_OPEN[],float 
         ADC_MANUAL_SAMPLE ();
         ADC_READ ();
         ADC_MANUAL_SAMPLE ();
-        float val = (((float)ADC_READ())/1023.0f)*5;
-        val = 47000.0f / (5.0f/val - 1.0f);
-        RES_OPEN[i] = val;
+//        float val = (((float)ADC_READ())/1023.0f)*5;
+//        val = 47000.0f / (5.0f/val - 1.0f);
+//        RES_OPEN[i] = val;
+        RES_OPEN[i] = ADC_READ();
     }
     
     LCD1602_CMD (lcd,CMD_CLEAR_DISPLAY_RETURN_HOME);
     LCD1602_STR (lcd,"Close Hand Firmly");
-    _delay_ms(5000);
+    _delay_ms(500);
     
     for(int i=0;i<size;i++)
     {
@@ -138,14 +139,15 @@ void calib_flex(lcd1602_t* lcd, uint8_t port_pins_adc[], float RES_OPEN[],float 
         ADC_MANUAL_SAMPLE ();
         ADC_READ ();
         ADC_MANUAL_SAMPLE ();
-        float val = (((float)ADC_READ())/1023.0f)*5;
-        val = 47000.0f / (5.0f/val - 1.0f);
-        RES_CLOSED[i] = val;
+//        float val = (((float)ADC_READ())/1023.0f)*5;
+//        val = 47000.0f / (5.0f/val - 1.0f);
+//        RES_CLOSED[i] = val;
+        RES_CLOSED[i] = ADC_READ();
     }
     
     LCD1602_CMD (lcd,CMD_CLEAR_DISPLAY_RETURN_HOME);
     LCD1602_STR (lcd,"Finished calibration");
-    _delay_ms(2000);
+    _delay_ms(250);
     LCD1602_CMD (lcd,CMD_CLEAR_DISPLAY_RETURN_HOME);
 }
 
@@ -156,8 +158,8 @@ int main()
     glove_t glove;
     int states[4]={FLEX_STATE_NULL};
     int prev_states[4]={FLEX_STATE_NULL};
-    float RES_OPEN[4];
-    float RES_CLOSED[4];
+    uint16_t RES_OPEN[4];
+    uint16_t RES_CLOSED[4];
     uint8_t port_pins_adc[4] = {A0,A1,A2,A3};
     ADC_INIT_POLL(VREF_AVCC,0,ADC_PS_128,FALSE);
     LCD1602_INIT (&lcd_1,A7,A6,A5,A4,B1,B2,FALSE,FALSE,FALSE);
@@ -177,8 +179,8 @@ int main()
     GLOVE_INIT (&glove,flexs,4);
     EEPROM_INIT ();    
     _delay_ms (50);
-    eepromWriter ();
-    sei();
+   //eepromWriter ();
+//    sei();
     LCD1602_CMD (&lcd_1,CMD_CLEAR_DISPLAY_RETURN_HOME);
     while(1)
     {
