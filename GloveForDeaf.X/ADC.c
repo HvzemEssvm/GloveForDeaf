@@ -1,8 +1,8 @@
 #include "DIO.h"
 #include "ADC.h"
 
-volatile void (*ADC_INT_ON)() = NULL;
-volatile bool_t ADLAR_ON = FALSE;
+void (*ADC_INT_ON)() = NULL;
+bool_t ADLAR_ON = FALSE;
 
 ISR(ADC_vect)
 {
@@ -23,7 +23,7 @@ static void ADC_ADMUX_CONFIG(uint8_t VREF,uint8_t ADCn, bool_t ADC_LEFT_ADJUSTED
 }
 
 
-void ADC_INIT(uint8_t VREF,uint8_t ADCn,void (*ADC_COMPLETE_CALLBACK)(), uint8_t ADC_PS, bool_t ADC_LEFT_ADJUSTED)
+void ADC_INIT_INT(uint8_t VREF,uint8_t ADCn,void (*ADC_COMPLETE_CALLBACK)(), uint8_t ADC_PS, bool_t ADC_LEFT_ADJUSTED)
 {
     ADCSRA = 0x00;    
     ADC_ADMUX_CONFIG(VREF,ADCn,ADC_LEFT_ADJUSTED);
@@ -33,6 +33,14 @@ void ADC_INIT(uint8_t VREF,uint8_t ADCn,void (*ADC_COMPLETE_CALLBACK)(), uint8_t
     ADCSRA |= 1<<ADIE;
 }
 
+void ADC_INIT_POLL(uint8_t VREF,uint8_t ADCn, uint8_t ADC_PS, bool_t ADC_LEFT_ADJUSTED)
+{
+    ADCSRA = 0x00;    
+    ADC_ADMUX_CONFIG(VREF,ADCn,ADC_LEFT_ADJUSTED);
+    ADCSRA |= ADC_PS;
+    ADCSRA |= 1<< ADEN;
+    ADCSRA &= ~(1<<ADIE);
+}
 
 void ADC_AUTOTRIG_INIT(uint8_t VREF,uint8_t ADCn,void (*ADC_COMPLETE_CALLBACK)(), uint8_t ADC_PS, bool_t ADC_LEFT_ADJUSTED, uint8_t MODE)
 {
@@ -74,6 +82,7 @@ void ADC_CHANGE_CALLBACK(void(*ADC_COMPLETE_CALLBACK)())
 void ADC_MANUAL_SAMPLE()
 {
     ADCSRA |= 1<<ADSC;
+    while(ADCSRA & (1<<ADSC));
 }
 
 void ADC_DISABLE ()

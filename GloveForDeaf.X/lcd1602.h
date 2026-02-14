@@ -60,7 +60,7 @@ void LCD1602_INIT(lcd1602_t* LCD,uint8_t PORT_PIN_D7,
 
 void LCD1602_CMD(const lcd1602_t* LCD, uint8_t CMD);
 void LCD1602_CHAR(const lcd1602_t* LCD, char DATA);
-void LCD1602_STR(const lcd1602_t* LCD, char str[]);
+void LCD1602_STR(const lcd1602_t* LCD, const char str[]);
 void LCD1602_INT(const lcd1602_t* LCD, int32_t val);
 void LCD1602_CLEAR_CHAR_RTL(const lcd1602_t* LCD);
 void LCD1602_CLEAR_CHAR_LTR(const lcd1602_t* LCD);

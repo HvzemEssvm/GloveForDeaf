@@ -358,6 +358,7 @@ state_t GET_PIN(uint8_t PORT_PIN_NUM)
             return GET_PIND (PIN);
             break;
     }
+    return LOW;
 }
 
 void TOGGLE_PIN(uint8_t PORT_PIN_NUM)

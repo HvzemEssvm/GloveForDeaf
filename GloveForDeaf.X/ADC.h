@@ -144,6 +144,7 @@ void ADC_INIT(uint8_t VREF,uint8_t ADCn,void (*ADC_COMPLETE_CALLBACK)(), uint8_t
 void ADC_AUTOTRIG_INIT(uint8_t VREF,uint8_t ADCn,void (*ADC_COMPLETE_CALLBACK)(), uint8_t ADC_PS, bool_t ADC_LEFT_ADJUSTED, uint8_t MODE);
 
 
+void ADC_INIT_POLL(uint8_t VREF,uint8_t ADCn, uint8_t ADC_PS, bool_t ADC_LEFT_ADJUSTED);
 
 /**
  * 

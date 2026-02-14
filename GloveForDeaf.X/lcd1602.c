@@ -143,7 +143,7 @@ void LCD1602_CHAR(const lcd1602_t* LCD, char DATA)
 #endif
 }
 
-void LCD1602_STR(const lcd1602_t* LCD, char str[])
+void LCD1602_STR(const lcd1602_t* LCD, const char str[])
 {
     for(int i =0;str[i]!='\0';i++)
     {
@@ -155,6 +155,13 @@ void LCD1602_INT(const lcd1602_t* LCD, int32_t val)
 {
     char temp[12];
     sprintf(temp,"%ld",val);
+    LCD1602_STR (LCD,temp);
+}
+
+void LCD1602_FLOAT(const lcd1602_t* LCD, float val)
+{
+    char temp[12];
+    sprintf(temp,"%.2f",val);
     LCD1602_STR (LCD,temp);
 }
 
